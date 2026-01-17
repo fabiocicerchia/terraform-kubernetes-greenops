@@ -1,0 +1,28 @@
+---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: kepler-power-scaler
+  namespace: default
+spec:
+  scaleTargetRef:
+    name: frontend
+
+  minReplicaCount: 1
+  maxReplicaCount: 10
+  pollingInterval: 30
+  cooldownPeriod: 300
+
+  triggers:
+  - type: prometheus
+    metadata:
+      serverAddress: http://prometheus-kube-prometheus-prometheus.monitoring:9090
+      metricName: kepler_container_watts
+      query: |
+        sum(
+          kepler_container_watts{
+            namespace="default",
+            pod=~"frontend.*"
+          }
+        )
+      threshold: "40"

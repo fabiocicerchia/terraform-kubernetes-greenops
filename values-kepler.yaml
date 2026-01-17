@@ -1,0 +1,7 @@
+# https://github.com/sustainable-computing-io/kepler/blob/main/manifests/helm/kepler/values.yaml
+# https://github.com/sustainable-computing-io/kepler/blob/main/docs/user/configuration.md
+
+---
+
+serviceMonitor:
+  enabled: true

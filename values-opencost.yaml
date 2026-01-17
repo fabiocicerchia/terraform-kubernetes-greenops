@@ -1,0 +1,12 @@
+# https://github.com/opencost/opencost-helm-chart/blob/main/charts/opencost/values.yaml
+
+---
+
+opencost:
+  carbonCost:
+    enabled: true
+  prometheus:
+    internal:
+      serviceName: prometheus-kube-prometheus-prometheus
+      port: 9090
+      namespaceName: monitoring
