@@ -1,6 +1,6 @@
 module "prometheus" {
   count  = var.prometheus.enabled ? 1 : 0
-  source = "https://github.com/fabiocicerchia/terraform-helm-prometheus-stack/?ref=main"
+  source = "github.com/fabiocicerchia/terraform-helm-prometheus-stack/?ref=main"
 
   providers = {
     helm = helm
@@ -14,7 +14,7 @@ module "prometheus" {
 
 module "keda" {
   count  = var.keda.enabled ? 1 : 0
-  source = "https://github.com/fabiocicerchia/terraform-helm-keda/?ref=main"
+  source = "github.com/fabiocicerchia/terraform-helm-keda/?ref=main"
 
   providers = {
     helm = helm
@@ -30,7 +30,7 @@ module "keda" {
 
 module "opencost" {
   count  = var.opencost.enabled ? 1 : 0
-  source = "https://github.com/fabiocicerchia/terraform-helm-opencost/?ref=main"
+  source = "github.com/fabiocicerchia/terraform-helm-opencost/?ref=main"
 
   providers = {
     helm = helm
@@ -44,7 +44,7 @@ module "opencost" {
 
 module "kepler" {
   count  = var.kepler.enabled ? 1 : 0
-  source = "https://github.com/fabiocicerchia/terraform-helm-kepler/?ref=main"
+  source = "github.com/fabiocicerchia/terraform-helm-kepler/?ref=main"
 
   providers = {
     helm = helm
@@ -59,7 +59,7 @@ module "kepler" {
 
 module "scaphandre" {
   count  = var.scaphandre.enabled ? 1 : 0
-  source = "https://github.com/fabiocicerchia/terraform-helm-scaphandre/?ref=main"
+  source = "github.com/fabiocicerchia/terraform-helm-scaphandre/?ref=main"
 
   providers = {
     helm = helm
@@ -73,7 +73,7 @@ module "scaphandre" {
 
 module "kubegreen" {
   count  = var.kubegreen.enabled ? 1 : 0
-  source = "https://github.com/fabiocicerchia/terraform-helm-kubegreen/?ref=main"
+  source = "github.com/fabiocicerchia/terraform-helm-kubegreen/?ref=main"
 
   providers = {
     helm = helm
