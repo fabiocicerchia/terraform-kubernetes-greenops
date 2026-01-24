@@ -64,12 +64,12 @@ module "greenops" {
     chart_version = var.carbon_intensity_exporter.chart_version
   }
 
-  cloudcarbonfootprint = {
-    enabled       = var.cloudcarbonfootprint.enabled
-    release_name  = var.cloudcarbonfootprint.release_name
-    namespace     = var.cloudcarbonfootprint.namespace
-    values        = var.cloudcarbonfootprint.values
-    chart_version = var.cloudcarbonfootprint.chart_version
+  cloud_carbon_footprint = {
+    enabled       = var.cloud_carbon_footprint.enabled
+    release_name  = var.cloud_carbon_footprint.release_name
+    namespace     = var.cloud_carbon_footprint.namespace
+    values        = var.cloud_carbon_footprint.values
+    chart_version = var.cloud_carbon_footprint.chart_version
   }
 
   depends_on = [null_resource.deploy_cert_manager]

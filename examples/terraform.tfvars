@@ -91,10 +91,10 @@ carbon_intensity_exporter = {
   values = {}
 }
 
-cloudcarbonfootprint = {
+cloud_carbon_footprint = {
   enabled       = true
   chart_version = ""
-  release_name  = "cloudcarbonfootprint"
+  release_name  = "cloud-carbon-footprint"
   namespace     = "cloud-carbon-footprint"
   # https://github.com/cloud-carbon-footprint/cloud-carbon-footprint
   values = {}

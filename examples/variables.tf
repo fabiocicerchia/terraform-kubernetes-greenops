@@ -104,11 +104,11 @@ variable "carbon_intensity_exporter" {
 }
 
 # Cloud Carbon Footprint configuration
-variable "cloudcarbonfootprint" {
+variable "cloud_carbon_footprint" {
   description = "Cloud Carbon Footprint module configuration"
   type = object({
     enabled       = optional(bool, true)
-    release_name  = optional(string, "cloudcarbonfootprint")
+    release_name  = optional(string, "cloud-carbon-footprint")
     namespace     = optional(string, "cloud-carbon-footprint")
     chart_version = optional(string, "")
     values        = optional(any, {})

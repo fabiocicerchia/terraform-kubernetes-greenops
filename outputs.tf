@@ -61,14 +61,14 @@ output "carbon_intensity_exporter" {
   } : null
 }
 
-output "cloudcarbonfootprint" {
+output "cloud_carbon_footprint" {
   description = "Cloud Carbon Footprint module outputs"
-  value = var.cloudcarbonfootprint.enabled ? {
-    namespace          = module.cloudcarbonfootprint[0].namespace
-    release_name       = module.cloudcarbonfootprint[0].release_name
-    version            = module.cloudcarbonfootprint[0].chart_version
-    client_service_url = module.cloudcarbonfootprint[0].client_service_url
-    api_service_url    = module.cloudcarbonfootprint[0].api_service_url
+  value = var.cloud_carbon_footprint.enabled ? {
+    namespace          = module.cloud_carbon_footprint[0].namespace
+    release_name       = module.cloud_carbon_footprint[0].release_name
+    version            = module.cloud_carbon_footprint[0].chart_version
+    client_service_url = module.cloud_carbon_footprint[0].client_service_url
+    api_service_url    = module.cloud_carbon_footprint[0].api_service_url
   } : null
 }
 
@@ -82,6 +82,6 @@ output "deployed_components" {
     scaphandre                = var.scaphandre.enabled
     kubegreen                 = var.kubegreen.enabled
     carbon_intensity_exporter = var.carbon_intensity_exporter.enabled
-    cloudcarbonfootprint      = var.cloudcarbonfootprint.enabled
+    cloud_carbon_footprint      = var.cloud_carbon_footprint.enabled
   }
 }
