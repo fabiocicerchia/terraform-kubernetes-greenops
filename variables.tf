@@ -90,3 +90,33 @@ variable "kubegreen" {
     enabled = true
   }
 }
+
+# Carbon Intensity Exporter configuration
+variable "carbon_intensity_exporter" {
+  description = "Carbon Intensity Exporter module configuration"
+  type = object({
+    enabled       = bool
+    release_name  = optional(string, "carbon-intensity-exporter")
+    namespace     = optional(string, "kube-system")
+    chart_version = optional(string, "")
+    values        = optional(any, {})
+  })
+  default = {
+    enabled = true
+  }
+}
+
+# Cloud Carbon Footprint configuration
+variable "cloud_carbon_footprint" {
+  description = "Cloud Carbon Footprint module configuration"
+  type = object({
+    enabled       = bool
+    release_name  = optional(string, "cloud-carbon-footprint")
+    namespace     = optional(string, "cloud-carbon-footprint")
+    chart_version = optional(string, "")
+    values        = optional(any, {})
+  })
+  default = {
+    enabled = true
+  }
+}

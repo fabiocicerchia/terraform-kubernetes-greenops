@@ -1,5 +1,5 @@
 module "greenops" {
-  source = "./modules/greenops"
+  source = "../"
 
   providers = {
     helm = helm
@@ -54,6 +54,22 @@ module "greenops" {
     namespace     = var.kubegreen.namespace
     values        = var.kubegreen.values
     chart_version = var.kubegreen.chart_version
+  }
+
+  carbon_intensity_exporter = {
+    enabled       = var.carbon_intensity_exporter.enabled
+    release_name  = var.carbon_intensity_exporter.release_name
+    namespace     = var.carbon_intensity_exporter.namespace
+    values        = var.carbon_intensity_exporter.values
+    chart_version = var.carbon_intensity_exporter.chart_version
+  }
+
+  cloud_carbon_footprint = {
+    enabled       = var.cloud_carbon_footprint.enabled
+    release_name  = var.cloud_carbon_footprint.release_name
+    namespace     = var.cloud_carbon_footprint.namespace
+    values        = var.cloud_carbon_footprint.values
+    chart_version = var.cloud_carbon_footprint.chart_version
   }
 
   depends_on = [null_resource.deploy_cert_manager]

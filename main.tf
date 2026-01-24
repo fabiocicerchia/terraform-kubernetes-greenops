@@ -84,3 +84,31 @@ module "kubegreen" {
   namespace       = var.kubegreen.namespace
   values          = var.kubegreen.values
 }
+
+module "carbon_intensity_exporter" {
+  count  = var.carbon_intensity_exporter.enabled ? 1 : 0
+  source = "github.com/fabiocicerchia/terraform-helm-carbon-intensity-exporter/?ref=main"
+
+  providers = {
+    helm = helm
+  }
+
+  release_name    = var.carbon_intensity_exporter.release_name
+  namespace       = var.carbon_intensity_exporter.namespace
+  chart_version   = var.carbon_intensity_exporter.chart_version
+  values          = var.carbon_intensity_exporter.values
+}
+
+module "cloud_carbon_footprint" {
+  count  = var.cloud_carbon_footprint.enabled ? 1 : 0
+  source = "github.com/fabiocicerchia/terraform-helm-cloud-carbon-footprint/?ref=main"
+
+  providers = {
+    helm = helm
+  }
+
+  release_name    = var.cloud_carbon_footprint.release_name
+  namespace       = var.cloud_carbon_footprint.namespace
+  chart_version   = var.cloud_carbon_footprint.chart_version
+  values          = var.cloud_carbon_footprint.values
+}

@@ -81,3 +81,21 @@ kubegreen = {
   # https://kube-green.github.io/
   values = {}
 }
+
+carbon_intensity_exporter = {
+  enabled       = true
+  chart_version = ""
+  release_name  = "carbon-intensity-exporter"
+  namespace     = "carbon-intensity-exporter"
+  # https://github.com/Azure/kubernetes-carbon-intensity-exporter
+  values = {}
+}
+
+cloud_carbon_footprint = {
+  enabled       = true
+  chart_version = ""
+  release_name  = "cloud-carbon-footprint"
+  namespace     = "cloud-carbon-footprint"
+  # https://github.com/cloud-carbon-footprint/cloud-carbon-footprint
+  values = {}
+}
