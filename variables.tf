@@ -8,9 +8,7 @@ variable "prometheus" {
     values        = optional(any, {})
     chart_version = optional(string, "")
   })
-  default = {
-    enabled = true
-  }
+  default = { enabled = true }
 }
 
 # KEDA configuration
@@ -25,9 +23,7 @@ variable "keda" {
     manifest_path  = optional(string, "keda.yaml")
     chart_version  = optional(string, "")
   })
-  default = {
-    enabled = true
-  }
+  default = { enabled = true }
 }
 
 # OpenCost configuration
@@ -40,9 +36,7 @@ variable "opencost" {
     chart_version = optional(string, "")
     values        = optional(any, {})
   })
-  default = {
-    enabled = true
-  }
+  default = { enabled = true }
 }
 
 # Kepler configuration
@@ -56,9 +50,7 @@ variable "kepler" {
     chart_version       = optional(string, "")
     deploy_powermonitor = optional(bool, true)
   })
-  default = {
-    enabled = true
-  }
+  default = { enabled = true }
 }
 
 # Scaphandre configuration
@@ -71,9 +63,7 @@ variable "scaphandre" {
     chart_version = optional(string, "")
     values        = optional(any, {})
   })
-  default = {
-    enabled = true
-  }
+  default = { enabled = true }
 }
 
 # KubeGreen configuration
@@ -86,9 +76,7 @@ variable "kubegreen" {
     chart_version = optional(string, "")
     values        = optional(any, {})
   })
-  default = {
-    enabled = true
-  }
+  default = { enabled = true }
 }
 
 # Carbon Intensity Exporter configuration
@@ -101,9 +89,7 @@ variable "carbon_intensity_exporter" {
     chart_version = optional(string, "")
     values        = optional(any, {})
   })
-  default = {
-    enabled = true
-  }
+  default = { enabled = true }
 }
 
 # Cloud Carbon Footprint configuration
@@ -116,7 +102,4 @@ variable "cloud_carbon_footprint" {
     chart_version = optional(string, "")
     values        = optional(any, {})
   })
-  default = {
-    enabled = true
-  }
 }
