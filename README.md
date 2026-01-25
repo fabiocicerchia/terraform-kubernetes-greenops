@@ -1,6 +1,6 @@
 # Terraform Module for GreenOps
 
-Comprehensive Terraform module for deploying a complete green operations monitoring stack on Kubernetes. Includes Prometheus, KEDA, OpenCost, Kepler Operator, Scaphandre, and KubeGreen with individual toggles for selective component deployment.
+Comprehensive Terraform module for deploying a complete green operations monitoring stack on Kubernetes. Includes Prometheus, KEDA, OpenCost, Kepler Operator, Scaphandre, KubeGreen, Carbon Intensity Exporter, and Cloud Carbon Footprint with individual toggles for selective component deployment.
 
 ## Overview
 
@@ -12,6 +12,8 @@ The GreenOps Module provides a unified way to deploy and manage:
 - **Kepler** - Environmental impact tracking via the Kepler Operator with optional power monitoring
 - **Scaphandre** - Container-level power consumption monitoring
 - **KubeGreen** - Automated resource cleanup and pod hibernation for cost optimisation
+- **Carbon Intensity Exporter** - Grid carbon intensity metrics for location-aware scheduling
+- **Cloud Carbon Footprint** - Cloud infrastructure carbon emissions tracking
 
 All components are **enabled by default** and can be selectively disabled based on your requirements.
 
@@ -24,15 +26,26 @@ All components are **enabled by default** and can be selectively disabled based 
 - **Kepler Operator**: Environmental impact and power consumption tracking
 - **Scaphandre**: Container-level power consumption monitoring
 - **KubeGreen**: Automated resource cleanup and pod hibernation
+- **Carbon Intensity Exporter**: Grid carbon intensity metrics for location-aware scheduling
+- **Cloud Carbon Footprint**: Cloud infrastructure carbon emissions tracking
 - **Flexible Configuration**: Customize each component independently with HCL values
+
+## Dependencies
+
+**Important:** OpenCost, Kepler, KEDA, and Scaphandre require Prometheus to function properly. You must either:
+- Deploy Prometheus via this module (enabled by default), or
+- Configure them to use an external Prometheus instance
+
+If you disable Prometheus in this module, ensure you configure OpenCost, Kepler, KEDA, and Scaphandre to connect to your existing Prometheus deployment via their `values` configuration. KEDA's `ScaledObject` resources need to reference Prometheus for metrics-based scaling.
+
+**Kepler Requirement:** Kepler requires [cert-manager](https://cert-manager.io/) to be installed in your cluster before deployment. Without cert-manager, Kepler will not function properly. You can install it using:
+```bash
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.18.2/cert-manager.yaml
+```
 
 ## Quick Links
 
-- 📖 [Getting Started](GETTING_STARTED.md) - Quick start and setup instructions
-- 🔧 [Configuration](CONFIGURATION.md) - Detailed configuration options and variables
-- 📤 [Outputs](OUTPUTS.md) - Available output values and how to use them
-- ✅ [Requirements](REQUIREMENTS.md) - Technical requirements and dependencies
-- 🆘 [Troubleshooting](TROUBLESHOOTING.md) - Common issues and solutions
+- [Requirements](REQUIREMENTS.md) - Technical requirements and dependencies
 
 ## Requirements
 
@@ -53,17 +66,17 @@ All components are **enabled by default** and can be selectively disabled based 
 
 ```hcl
 module "greenops" {
-  source = "https://github.com/fabiocicerchia/terraform-kubernetes-greenops.git?ref=main"
+  source = "fabiocicerchia/greenops/kubernetes"
 }
 ```
 
-All six components (Prometheus, KEDA, OpenCost, Kepler, Scaphandre, and KubeGreen) are **enabled by default**.
+All eight components (Prometheus, KEDA, OpenCost, Kepler, Scaphandre, KubeGreen, Carbon Intensity Exporter, and Cloud Carbon Footprint) are **enabled by default**.
 
 ### Disable Specific Components
 
 ```hcl
 module "greenops" {
-  source = "https://github.com/fabiocicerchia/terraform-kubernetes-greenops.git?ref=main"
+  source = "fabiocicerchia/greenops/kubernetes"
 
   prometheus = {
     enabled = true
@@ -95,7 +108,7 @@ module "greenops" {
 
 ```hcl
 module "greenops" {
-  source = "https://github.com/fabiocicerchia/terraform-kubernetes-greenops.git?ref=main"
+  source = "fabiocicerchia/greenops/kubernetes"
 
   prometheus = {
     enabled      = true
@@ -146,6 +159,8 @@ module "greenops" {
 | kepler | Kepler module configuration | `object({...})` | `{ enabled = true, ... }` | no |
 | scaphandre | Scaphandre module configuration | `object({...})` | `{ enabled = true, ... }` | no |
 | kubegreen | KubeGreen module configuration | `object({...})` | `{ enabled = true, ... }` | no |
+| carbon_intensity_exporter | Carbon Intensity Exporter module configuration | `object({...})` | `{ enabled = true, ... }` | no |
+| cloud_carbon_footprint | Cloud Carbon Footprint module configuration | `object({...})` | `{ enabled = true, ... }` | no |
 
 ### Detailed Input Schema
 
@@ -297,16 +312,38 @@ kubegreen = {
 }
 ```
 
+### carbon_intensity_exporter
+Carbon Intensity Exporter module outputs (if enabled):
+```hcl
+carbon_intensity_exporter = {
+  namespace    = string  # Kubernetes namespace where Carbon Intensity Exporter is deployed
+  release_name = string  # Helm release name of Carbon Intensity Exporter
+  version      = string  # Chart version deployed
+}
+```
+
+### cloud_carbon_footprint
+Cloud Carbon Footprint module outputs (if enabled):
+```hcl
+cloud_carbon_footprint = {
+  namespace    = string  # Kubernetes namespace where Cloud Carbon Footprint is deployed
+  release_name = string  # Helm release name of Cloud Carbon Footprint
+  version      = string  # Chart version deployed
+}
+```
+
 ### deployed_components
 Map showing which components are enabled:
 ```hcl
 deployed_components = {
-  prometheus = bool  # true if Prometheus is enabled
-  keda       = bool  # true if KEDA is enabled
-  opencost   = bool  # true if OpenCost is enabled
-  kepler     = bool  # true if Kepler is enabled
-  scaphandre = bool  # true if Scaphandre is enabled
-  kubegreen  = bool  # true if KubeGreen is enabled
+  prometheus                = bool  # true if Prometheus is enabled
+  keda                      = bool  # true if KEDA is enabled
+  opencost                  = bool  # true if OpenCost is enabled
+  kepler                    = bool  # true if Kepler is enabled
+  scaphandre                = bool  # true if Scaphandre is enabled
+  kubegreen                 = bool  # true if KubeGreen is enabled
+  carbon_intensity_exporter = bool  # true if Carbon Intensity Exporter is enabled
+  cloud_carbon_footprint    = bool  # true if Cloud Carbon Footprint is enabled
 }
 ```
 
@@ -318,7 +355,7 @@ Only enable Prometheus for basic monitoring:
 
 ```hcl
 module "greenops" {
-  source = "https://github.com/fabiocicerchia/terraform-kubernetes-greenops.git?ref=main"
+  source = "fabiocicerchia/greenops/kubernetes"
 
   prometheus = { enabled = true }
   keda       = { enabled = false }
@@ -333,7 +370,7 @@ Enable Prometheus and OpenCost for cost visibility:
 
 ```hcl
 module "greenops" {
-  source = "https://github.com/fabiocicerchia/terraform-kubernetes-greenops.git?ref=main"
+  source = "fabiocicerchia/greenops/kubernetes"
 
   prometheus = { enabled = true }
   opencost   = { enabled = true }
@@ -346,7 +383,7 @@ Complete stack for environmental tracking:
 
 ```hcl
 module "greenops" {
-  source = "https://github.com/fabiocicerchia/terraform-kubernetes-greenops.git?ref=main"
+  source = "fabiocicerchia/greenops/kubernetes"
 
   # All enabled by default, just provide custom values if needed
   prometheus = {
@@ -368,14 +405,13 @@ module "greenops" {
   kubegreen = {
     enabled = true  # Enable for resource cleanup and pod hibernation
   }
-}
 
-  opencost = {
-    enabled = true
+  carbon_intensity_exporter = {
+    enabled = true  # Enable for grid carbon intensity metrics
   }
 
-  kepler = {
-    enabled = true
+  cloud_carbon_footprint = {
+    enabled = true  # Enable for cloud infrastructure carbon tracking
   }
 }
 ```
@@ -391,6 +427,30 @@ module "greenops" {
 }
 ```
 
+## Requirements
+
+- [Terraform](https://developer.hashicorp.com/terraform/install) >= 1.0 or [OpenTofu](https://opentofu.org/docs/intro/install/)
+- [Kubernetes](https://kubernetes.io/) cluster (v1.24+)
+- [Kubectl](https://kubernetes.io/docs/tasks/tools/) configured to access your cluster
+- [Helm](https://helm.sh/) (provider handles installation)
+
+## Local Development with Minikube
+
+### Start Minikube
+
+```bash
+minikube start --kubernetes-version=v1.34.0
+minikube addons enable metrics-server
+kubectl config use-context minikube && kubectl config current-context
+```
+
+### Deploy the Stack
+
+```bash
+terraform init
+terraform apply
+```
+
 ## Troubleshooting
 
 ### Check Deployment Status
@@ -398,65 +458,31 @@ module "greenops" {
 ```bash
 # Check all pods across all namespaces
 kubectl get pods -A
-
-# Check specific component namespaces
-kubectl get pods -n monitoring      # Prometheus
-kubectl get pods -n keda            # KEDA
-kubectl get pods -n opencost        # OpenCost
-kubectl get pods -n kepler-operator # Kepler
-kubectl get pods -n scaphandre      # Scaphandre
-kubectl get pods -n kube-green      # KubeGreen
-```
-
-### View Component Logs
-
-```bash
-# Prometheus
-kubectl logs -n monitoring -l app.kubernetes.io/name=prometheus --tail=100
-
-# KEDA
-kubectl logs -n keda -l app=keda-operator --tail=100
-
-# OpenCost
-kubectl logs -n opencost -l app=opencost --tail=100
-
-# Kepler
-kubectl logs -n kepler-operator -l app.kubernetes.io/name=kepler --tail=100
-
-# Scaphandre
-kubectl logs -n scaphandre -l app=scaphandre --tail=100
-
-# KubeGreen
-kubectl logs -n kube-green -l app.kubernetes.io/name=kube-green --tail=100
 ```
 
 ### Access Services Locally
+
+Get Grafana admin password:
+
+```bash
+kubectl --namespace monitoring get secrets prometheus-community-grafana \
+  -o jsonpath="{.data.admin-password}" | base64 -d ; echo
+```
+
+Port forward services:
 
 ```bash
 # Prometheus
 kubectl port-forward -n monitoring svc/prometheus-community-kube-prometheus 9090:9090
 
 # Grafana (part of Prometheus)
-kubectl port-forward -n monitoring svc/prometheus-grafana 3000:80
+kubectl port-forward -n monitoring svc/prometheus-community-grafana 3000:80
 
 # OpenCost UI
-kubectl port-forward -n opencost svc/opencost 9090
-```
+kubectl port-forward -n opencost svc/opencost-charts 9091:9090
 
-### Debug Component Issues
-
-```bash
-# Describe pods to see events
-kubectl describe pod -n monitoring <pod-name>
-
-# Check resource requests/limits
-kubectl get pods -n monitoring -o json | grep -A5 "resources"
-
-# Check ServiceMonitor status
-kubectl get servicemonitor -A
-
-# Check Helm releases
-helm list -A
+# Cloud Carbon Footprint
+kubectl port-forward -n cloud-carbon-footprint svc/cloud-carbon-footprint-client 8080:80
 ```
 
 ## License
