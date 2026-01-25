@@ -485,6 +485,12 @@ kubectl port-forward -n opencost svc/opencost-charts 9091:9090
 kubectl port-forward -n cloud-carbon-footprint svc/cloud-carbon-footprint-client 8080:80
 ```
 
+Test the carbon-intensity-exporter:
+
+```bash
+kubectl get configmap -n carbon-intensity-exporter carbon-intensity -o jsonpath="{.binaryData.data}" | base64 -d ; echo
+```
+
 ## License
 
 MIT

@@ -107,7 +107,7 @@ module "greenops" {
     chart_version = ""
     release_name  = "kube-green"
     namespace     = "kube-green"
-    # https://github.com/kube-green/kube-green
+    # https://github.com/kube-green/kube-green/blob/main/charts/kube-green/values.yaml
     # https://kube-green.github.io/
     values        = {}
   }
@@ -117,8 +117,17 @@ module "greenops" {
     chart_version = ""
     release_name  = "carbon-intensity-exporter"
     namespace     = "carbon-intensity-exporter"
-    # https://github.com/Azure/kubernetes-carbon-intensity-exporter
-    values        = {}
+    # https://github.com/Azure/kubernetes-carbon-intensity-exporter/blob/main/charts/carbon-intensity-exporter/values.yaml
+    values        = {
+      providerName = "WattTime"
+      electricityMaps = {
+        apiToken = "token" # Replace with your actual API token
+      }
+      wattTime = {
+        username = "username" # Replace with your actual username
+        password = "password" # Replace with your actual password
+      }
+    }
   }
 
   cloud_carbon_footprint = {
@@ -126,7 +135,7 @@ module "greenops" {
     chart_version = ""
     release_name  = "cloud-carbon-footprint"
     namespace     = "cloud-carbon-footprint"
-    # https://github.com/cloud-carbon-footprint/cloud-carbon-footprint
+    # https://github.com/cloud-carbon-footprint/cloud-carbon-footprint/blob/trunk/helm/charts/cloud-carbon-footprint/values.yaml
     values        = {}
   }
 
