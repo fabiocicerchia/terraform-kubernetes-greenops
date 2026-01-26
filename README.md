@@ -58,21 +58,6 @@ Efficient infrastructure is **cheaper, faster, and greener**.
 
 This module provides the **foundation and tooling** to practice GreenOps effectively.
 
-## Features
-
-- **Selective Deployment**: Enable or disable components individually via feature toggles
-- **Prometheus Monitoring**: Complete monitoring and metrics stack with Grafana
-- **KEDA Autoscaling**: Event-driven workload scaling with optional examples
-- **OpenCost**: Cloud cost monitoring and allocation with carbon tracking
-- **Kepler Operator**: Environmental impact and power consumption tracking
-- **Scaphandre**: Container-level power consumption monitoring
-- **KubeGreen**: Automated resource cleanup and pod hibernation
-- **Carbon Intensity Exporter**: Grid carbon intensity metrics for location-aware scheduling
-- **Cloud Carbon Footprint**: Cloud infrastructure carbon emissions tracking
-- **Green Metrics Tool**: Software carbon footprint measurement and optimization
-- **CodeCarbon**: Python code carbon emissions tracking
-- **Flexible Configuration**: Customize each component independently with HCL values
-
 ## Dependencies
 
 **Important:** OpenCost, Kepler, KEDA, and Scaphandre require Prometheus to function properly. You must either:
@@ -86,10 +71,6 @@ If you disable Prometheus in this module, ensure you configure OpenCost, Kepler,
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.18.2/cert-manager.yaml
 ```
 
-## Quick Links
-
-- [Requirements](REQUIREMENTS.md) - Technical requirements and dependencies
-
 ## Requirements
 
 | Name | Version |
@@ -97,6 +78,11 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/
 | terraform | >= 1.0 or OpenTofu >= 1.6 |
 | helm | >= 2.0 |
 | null | >= 3.0 |
+
+- [Terraform](https://developer.hashicorp.com/terraform/install) >= 1.0 or [OpenTofu](https://opentofu.org/docs/intro/install/)
+- [Kubernetes](https://kubernetes.io/) cluster (v1.24+)
+- [Kubectl](https://kubernetes.io/docs/tasks/tools/) configured to access your cluster
+- [Helm](https://helm.sh/) (provider handles installation)
 
 ### External Requirements
 
@@ -550,13 +536,6 @@ module "greenops" {
   # or use: ref=develop, ref=main, ref=abc1234 (commit SHA)
 }
 ```
-
-## Requirements
-
-- [Terraform](https://developer.hashicorp.com/terraform/install) >= 1.0 or [OpenTofu](https://opentofu.org/docs/intro/install/)
-- [Kubernetes](https://kubernetes.io/) cluster (v1.24+)
-- [Kubectl](https://kubernetes.io/docs/tasks/tools/) configured to access your cluster
-- [Helm](https://helm.sh/) (provider handles installation)
 
 ## Local Development with Minikube
 
