@@ -1,6 +1,6 @@
 # 🌱 Terraform Module for GreenOps
 
-Comprehensive Terraform module for deploying a complete green operations monitoring stack on Kubernetes. Includes Prometheus, KEDA, OpenCost, Kepler Operator, Scaphandre, KubeGreen, Carbon Intensity Exporter, Cloud Carbon Footprint, Green Metrics Tool, and CodeCarbon with individual toggles for selective component deployment.
+Comprehensive Terraform module for deploying a complete green operations monitoring stack on Kubernetes. Includes Prometheus, KEDA, OpenCost, Kepler Operator, Scaphandre, KubeGreen, Carbon Intensity Exporter, Cloud Carbon Footprint, and CodeCarbon with individual toggles for selective component deployment.
 
 ## Overview
 
@@ -20,7 +20,6 @@ The GreenOps Module provides a unified way to deploy and manage:
   - **CodeCarbon** - Python code carbon emissions tracking
 - **Sustainability Optimisation & Automation**:
   - **KubeGreen** - Automated resource cleanup and pod hibernation for cost optimisation
-  - **Green Metrics Tool** - Software carbon footprint measurement and optimisation
 
 All components are **enabled by default** and can be selectively disabled based on your requirements.
 
@@ -31,7 +30,7 @@ Sustainable computing is no longer just about hardware—it's about how software
 - 👁️ **Observe**: Gain visibility into the real-time energy and carbon footprint of your clusters (Kepler, Scaphandre).
 - 📉 **Optimise**: Automatically reduce waste by scaling down idle resources (KEDA) and hibernating non-production environments (KubeGreen).
 - 💰 **Attribute**: Connect carbon emissions directly to financial costs for better accountability (OpenCost).
-- 🧪 **Measure**: Quantify the environmental impact of your software code (Green Metrics Tool, CodeCarbon).
+- 🧪 **Measure**: Quantify the environmental impact of your software code (CodeCarbon).
 
 Efficient infrastructure is **cheaper, faster, and greener**.
 
@@ -53,7 +52,7 @@ Efficient infrastructure is **cheaper, faster, and greener**.
 
 ### What It Does Not Do (By Default)
 
-- ❌ **Rewrite your application**: It provides the data (CodeCarbon, Green Metrics Tool) to identify inefficient code, but the fix is up to you.
+- ❌ **Rewrite your application**: It provides the data (CodeCarbon) to identify inefficient code, but the fix is up to you.
 - ❌ **Compromise availability**: Optimisation tools like KubeGreen are strictly opt-in and configurable per-namespace.
 
 This module provides the **foundation and tooling** to practice GreenOps effectively.
@@ -197,7 +196,7 @@ module "greenops" {
 | cost_efficiency | Cost and resource efficiency tools (OpenCost) | `object({...})` | `{}` | no |
 | energy_power | Energy and power monitoring tools (Kepler, Scaphandre) | `object({...})` | `{}` | no |
 | carbon_emissions | Carbon and emissions estimation tools (IE, CCF, CodeCarbon) | `object({...})` | `{}` | no |
-| sustainability_optimisation | Sustainability optimisation tools (KubeGreen, Green Metrics Tool) | `object({...})` | `{}` | no |
+| sustainability_optimisation | Sustainability optimisation tools (KubeGreen) | `object({...})` | `{}` | no |
 
 ### Detailed Input Schema
 
@@ -298,14 +297,6 @@ sustainability_optimisation = {
     values        = optional(any)           # Helm chart values
     chart_version = optional(string)        # Helm chart version
   }))
-  green_metrics_tool = optional(object({
-    enabled           = bool                # Enable Green Metrics Tool (default: true)
-    release_name      = optional(string)    # Helm release name
-    namespace         = optional(string)    # Kubernetes namespace
-    values            = optional(any)       # Helm chart values
-    chart_version     = optional(string)    # Helm chart version
-    postgres_password = optional(string)    # PostgreSQL password
-  }))
 }
 ```
 
@@ -374,11 +365,6 @@ sustainability_optimisation = {
     release_name = string
     version      = string
   }
-  green_metrics_tool = {
-    namespace    = string
-    release_name = string
-    version      = string
-  }
 }
 ```
 
@@ -423,7 +409,6 @@ deployed_components = {
   }
   sustainability_optimisation = {
     kubegreen          = bool
-    green_metrics_tool = bool
   }
   carbon_emissions = {
     carbon_intensity_exporter = bool
@@ -506,9 +491,6 @@ module "greenops" {
   sustainability_optimisation = {
     kubegreen = {
       enabled = true  # Enable for resource cleanup and pod hibernation
-    }
-    green_metrics_tool = {
-      enabled = true  # Enable for software carbon footprint measurement
     }
   }
 
