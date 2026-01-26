@@ -49,11 +49,6 @@ output "sustainability_optimisation" {
       release_name = module.kubegreen[0].release_name
       version      = module.kubegreen[0].chart_version
     } : null
-    green_metrics_tool = var.sustainability_optimisation.green_metrics_tool.enabled ? {
-      namespace    = module.green_metrics_tool[0].namespace
-      release_name = module.green_metrics_tool[0].release_name
-      version      = module.green_metrics_tool[0].chart_version
-    } : null
   }
 }
 
@@ -96,7 +91,6 @@ output "deployed_components" {
     }
     sustainability_optimisation = {
       kubegreen          = var.sustainability_optimisation.kubegreen.enabled
-      green_metrics_tool = var.sustainability_optimisation.green_metrics_tool.enabled
     }
     carbon_emissions = {
       carbon_intensity_exporter = var.carbon_emissions.carbon_intensity_exporter.enabled

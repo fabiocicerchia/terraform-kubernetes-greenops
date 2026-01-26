@@ -125,12 +125,6 @@ module "greenops" {
       # https://kube-green.github.io/
       values = {}
     }
-    green_metrics_tool = {
-      enabled           = true
-      release_name      = "green-metrics-tool"
-      namespace         = "green-metrics-tool"
-      postgres_password = "changeme" # Change this to a secure password
-    }
   }
 
   carbon_emissions = {

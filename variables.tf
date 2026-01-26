@@ -115,17 +115,6 @@ variable "sustainability_optimisation" {
       chart_version = optional(string, "")
       values        = optional(any, {})
     }), { enabled = true })
-    green_metrics_tool = optional(object({
-      enabled           = bool
-      release_name      = optional(string, "green-metrics-tool")
-      namespace         = optional(string, "green-metrics-tool")
-      chart_version     = optional(string, "")
-      values            = optional(any, {})
-      postgres_password = string
-      }), {
-      enabled           = true
-      postgres_password = "change_me"
-    })
   })
   default = {}
 }

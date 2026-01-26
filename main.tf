@@ -113,21 +113,6 @@ module "cloud_carbon_footprint" {
   values        = var.carbon_emissions.cloud_carbon_footprint.values
 }
 
-module "green_metrics_tool" {
-  count  = var.sustainability_optimisation.green_metrics_tool.enabled ? 1 : 0
-  source = "fabiocicerchia/green-metrics-tool/helm"
-
-  providers = {
-    kubectl = kubectl
-  }
-
-  # release_name  = var.sustainability_optimisation.green_metrics_tool.release_name
-  namespace = var.sustainability_optimisation.green_metrics_tool.namespace
-  # chart_version = var.sustainability_optimisation.green_metrics_tool.chart_version
-  # values        = var.sustainability_optimisation.green_metrics_tool.values
-  postgres_password = var.sustainability_optimisation.green_metrics_tool.postgres_password
-}
-
 module "codecarbon" {
   count  = var.carbon_emissions.codecarbon.enabled ? 1 : 0
   source = "fabiocicerchia/codecarbon/kubernetes"
