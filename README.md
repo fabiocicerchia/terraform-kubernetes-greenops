@@ -7,6 +7,7 @@
 ## ⚡ Quick Start (5 Minutes)
 
 **You can't optimize what you don't measure.** Most engineering teams lack visibility into:
+
 - How much energy their applications consume
 - Which workloads are the most expensive
 - Where to focus optimization efforts for maximum impact
@@ -27,12 +28,14 @@ terraform init && terraform apply
 ```
 
 **That's it!** You now have:
+
 - **Prometheus** monitoring stack with Grafana dashboards
 - **Kepler** measuring real-time energy consumption per pod
 - **OpenCost** tracking infrastructure costs
 - **CodeCarbon** tracking application-level carbon emissions
 
 Access your dashboards:
+
 ```bash
 kubectl port-forward -n monitoring svc/prometheus-community-grafana 3000:80
 # Browse to http://localhost:3000 (admin / prom-operator)
@@ -58,6 +61,7 @@ The GreenOps Module provides a unified way to deploy and manage:
   - **KubeGreen** - Automated resource cleanup and pod hibernation for cost optimisation
 
 **Default Configuration (Observability):**
+
 - ✅ **Enabled**: Prometheus, Kepler, OpenCost, CodeCarbon (safe, read-only monitoring)
 - ❌ **Disabled**: KEDA, KubeGreen, Carbon Intensity Exporter, Cloud Carbon Footprint (require configuration or perform actions)
 
@@ -99,23 +103,25 @@ This module provides the **foundation and tooling** to practice GreenOps effecti
 ## Dependencies
 
 **Important:** OpenCost, Kepler, KEDA, and Scaphandre require Prometheus to function properly. You must either:
+
 - Deploy Prometheus via this module (enabled by default), or
 - Configure them to use an external Prometheus instance
 
 If you disable Prometheus in this module, ensure you configure OpenCost, Kepler, KEDA, and Scaphandre to connect to your existing Prometheus deployment via their `values` configuration. KEDA's `ScaledObject` resources need to reference Prometheus for metrics-based scaling.
 
 **Kepler Requirement:** Kepler requires [cert-manager](https://cert-manager.io/) to be installed in your cluster before deployment. Without cert-manager, Kepler will not function properly. You can install it using:
+
 ```bash
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.18.2/cert-manager.yaml
 ```
 
 ## Requirements
 
-| Name | Version |
-|------|---------|
+| Name      | Version                   |
+| --------- | ------------------------- |
 | terraform | >= 1.0 or OpenTofu >= 1.6 |
-| helm | >= 2.0 |
-| null | >= 3.0 |
+| helm      | >= 2.0                    |
+| null      | >= 3.0                    |
 
 - [Terraform](https://developer.hashicorp.com/terraform/install) >= 1.0 or [OpenTofu](https://opentofu.org/docs/intro/install/)
 - [Kubernetes](https://kubernetes.io/) cluster (v1.24+)
@@ -171,6 +177,7 @@ module "greenops" {
 ```
 
 **Deploy with:**
+
 ```bash
 # Use current kubectl context
 terraform apply
@@ -191,7 +198,6 @@ Import these community dashboards for visualization:
 - [Energy K8s Experiments Dashboard](https://raw.githubusercontent.com/bernardodon/energy-k8s-experiments/refs/heads/main/grafana-setup.json)
 
 ### Toggle Specific Components
-
 
 ```hcl
 module "greenops" {
@@ -280,19 +286,20 @@ module "greenops" {
 
 ## Inputs
 
-| Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| kubectl_config_path | Path to kubectl config file | `string` | `"~/.kube/config"` | no |
-| kubectl_context | Kubectl context to use for deployment | `string` | `""` (current context) | no |
-| observability | Observability and scaling tools (Prometheus, KEDA) | `object({...})` | `{}` | no |
-| cost_efficiency | Cost and resource efficiency tools (OpenCost) | `object({...})` | `{}` | no |
-| energy_power | Energy and power monitoring tools (Kepler, Scaphandre) | `object({...})` | `{}` | no |
-| carbon_emissions | Carbon and emissions estimation tools (IE, CCF, CodeCarbon) | `object({...})` | `{}` | no |
-| sustainability_optimisation | Sustainability optimisation tools (KubeGreen) | `object({...})` | `{}` | no |
+| Name                        | Description                                                 | Type            | Default                | Required |
+| --------------------------- | ----------------------------------------------------------- | --------------- | ---------------------- | :------: |
+| kubectl_config_path         | Path to kubectl config file                                 | `string`        | `"~/.kube/config"`     | no       |
+| kubectl_context             | Kubectl context to use for deployment                       | `string`        | `""` (current context) | no       |
+| observability               | Observability and scaling tools (Prometheus, KEDA)          | `object({...})` | `{}`                   | no       |
+| cost_efficiency             | Cost and resource efficiency tools (OpenCost)               | `object({...})` | `{}`                   | no       |
+| energy_power                | Energy and power monitoring tools (Kepler, Scaphandre)      | `object({...})` | `{}`                   | no       |
+| carbon_emissions            | Carbon and emissions estimation tools (IE, CCF, CodeCarbon) | `object({...})` | `{}`                   | no       |
+| sustainability_optimisation | Sustainability optimisation tools (KubeGreen)               | `object({...})` | `{}`                   | no       |
 
 ### Detailed Input Schema
 
 #### observability
+
 ```hcl
 observability = {
   prometheus = optional(object({
@@ -315,6 +322,7 @@ observability = {
 ```
 
 #### cost_efficiency
+
 ```hcl
 cost_efficiency = {
   opencost = optional(object({
@@ -328,6 +336,7 @@ cost_efficiency = {
 ```
 
 #### energy_power
+
 ```hcl
 energy_power = {
   kepler = optional(object({
@@ -348,6 +357,7 @@ energy_power = {
 ```
 
 #### carbon_emissions
+
 ```hcl
 carbon_emissions = {
   carbon_intensity_exporter = optional(object({
@@ -379,6 +389,7 @@ carbon_emissions = {
 ```
 
 #### sustainability_optimisation
+
 ```hcl
 sustainability_optimisation = {
   kubegreen = optional(object({
@@ -396,13 +407,14 @@ sustainability_optimisation = {
 All modules support `chart_version` parameter within their respective configuration blocks.
 If set to `""` (empty string) or omitted, it will deploy the latest available Helm chart version.
 
-
 ## Outputs
 
 The module provides outputs organised in nested objects for better structure:
 
 ### observability
+
 Observability and scaling outputs:
+
 ```hcl
 observability = {
   prometheus = {
@@ -419,7 +431,9 @@ observability = {
 ```
 
 ### cost_efficiency
+
 Cost and resource efficiency outputs:
+
 ```hcl
 cost_efficiency = {
   opencost = {
@@ -431,7 +445,9 @@ cost_efficiency = {
 ```
 
 ### energy_power
+
 Energy and power monitoring outputs:
+
 ```hcl
 energy_power = {
   kepler = {
@@ -448,7 +464,9 @@ energy_power = {
 ```
 
 ### sustainability_optimisation
+
 Sustainability optimisation outputs:
+
 ```hcl
 sustainability_optimisation = {
   kubegreen = {
@@ -460,7 +478,9 @@ sustainability_optimisation = {
 ```
 
 ### carbon_emissions
+
 Carbon and emissions estimation outputs:
+
 ```hcl
 carbon_emissions = {
   carbon_intensity_exporter = {
@@ -484,7 +504,9 @@ carbon_emissions = {
 ```
 
 ### deployed_components
+
 Map showing which components are enabled:
+
 ```hcl
 deployed_components = {
   observability = {

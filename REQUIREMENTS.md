@@ -2,10 +2,10 @@
 
 ## Terraform
 
-| Name | Version |
-|------|---------|
-| terraform | >= 1.0 |
-| helm | >= 2.0 |
+| Name      | Version |
+| --------- | ------- |
+| terraform | >= 1.0  |
+| helm      | >= 2.0  |
 
 ## External Requirements
 
