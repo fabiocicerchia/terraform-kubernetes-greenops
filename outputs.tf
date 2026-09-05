@@ -62,6 +62,9 @@ output "sustainability_optimisation" {
 
 output "carbon_emissions" {
   description = "Carbon and emissions estimation outputs"
+  # Derived from var.carbon_emissions, which carries an api_key and the
+  # WattTime credentials, so the whole aggregate is sensitive (FC-TF-005).
+  sensitive = true
   value = {
     carbon_intensity_exporter = var.carbon_emissions.carbon_intensity_exporter.enabled ? {
       namespace    = module.carbon_intensity_exporter[0].namespace
@@ -84,6 +87,9 @@ output "carbon_emissions" {
 
 output "deployed_components" {
   description = "List of deployed components"
+  # Includes flags read from var.carbon_emissions, which is sensitive because
+  # it carries an api_key, so this aggregate inherits that (FC-TF-005).
+  sensitive = true
   value = {
     observability = {
       prometheus = var.observability.prometheus.enabled
