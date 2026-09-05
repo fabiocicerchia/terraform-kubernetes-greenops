@@ -6,15 +6,15 @@ Examples showing how to use the GreenOps Terraform module, from simple observabi
 
 ### I'm new to GreenOps
 
-→ Start with [`tier1-observe-only.tf`](tier1-observe-only.tf)
+→ Start with [`tier1-observe-only`](tier1-observe-only/)
 
 ### I want to track carbon emissions for reporting
 
-→ Use [`tier2-measure-carbon.tf`](tier2-measure-carbon.tf)
+→ Use [`tier2-measure-carbon`](tier2-measure-carbon/)
 
 ### I have baseline metrics and want to optimize
 
-→ Use [`tier3-optimize-automate.tf`](tier3-optimize-automate.tf)
+→ Use [`tier3-optimize-automate`](tier3-optimize-automate/)
 
 ## Feature Comparison
 
@@ -50,9 +50,9 @@ terraform apply
 
 ### Tier Examples
 
-- [`tier1-observe-only.tf`](tier1-observe-only.tf) - Observability only (recommended start)
-- [`tier2-measure-carbon.tf`](tier2-measure-carbon.tf) - Add carbon tracking
-- [`tier3-optimize-automate.tf`](tier3-optimize-automate.tf) - Enable automation (advanced)
+- [`tier1-observe-only`](tier1-observe-only/) - Observability only (recommended start)
+- [`tier2-measure-carbon`](tier2-measure-carbon/) - Add carbon tracking
+- [`tier3-optimize-automate`](tier3-optimize-automate/) - Enable automation (advanced)
 
 ### Configuration Examples
 

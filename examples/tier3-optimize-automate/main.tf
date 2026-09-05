@@ -65,7 +65,7 @@ provider "kubectl" {
 }
 
 module "greenops_optimize" {
-  source = "../"
+  source = "../../"
 
   providers = {
     helm    = helm

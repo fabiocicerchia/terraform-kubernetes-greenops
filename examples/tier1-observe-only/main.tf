@@ -61,7 +61,7 @@ provider "kubectl" {
 }
 
 module "greenops_observe" {
-  source = "../"
+  source = "../../"
 
   providers = {
     helm    = helm

@@ -1,6 +1,7 @@
 module "prometheus" {
-  count  = var.observability.prometheus.enabled ? 1 : 0
-  source = "fabiocicerchia/prometheus-stack/helm"
+  count   = var.observability.prometheus.enabled ? 1 : 0
+  source  = "fabiocicerchia/prometheus-stack/helm"
+  version = "~> 0.0.3"
 
   providers = {
     helm = helm
@@ -13,8 +14,9 @@ module "prometheus" {
 }
 
 module "keda" {
-  count  = var.observability.keda.enabled ? 1 : 0
-  source = "fabiocicerchia/keda/helm"
+  count   = var.observability.keda.enabled ? 1 : 0
+  source  = "fabiocicerchia/keda/helm"
+  version = "~> 0.0.3"
 
   providers = {
     helm = helm
@@ -29,8 +31,9 @@ module "keda" {
 }
 
 module "opencost" {
-  count  = var.cost_efficiency.opencost.enabled ? 1 : 0
-  source = "fabiocicerchia/opencost/helm"
+  count   = var.cost_efficiency.opencost.enabled ? 1 : 0
+  source  = "fabiocicerchia/opencost/helm"
+  version = "~> 0.0.3"
 
   providers = {
     helm = helm
@@ -43,8 +46,9 @@ module "opencost" {
 }
 
 module "kepler" {
-  count  = var.energy_power.kepler.enabled ? 1 : 0
-  source = "fabiocicerchia/kepler/helm"
+  count   = var.energy_power.kepler.enabled ? 1 : 0
+  source  = "fabiocicerchia/kepler/helm"
+  version = "~> 0.0.4"
 
   providers = {
     helm = helm
@@ -57,8 +61,9 @@ module "kepler" {
 }
 
 module "scaphandre" {
-  count  = var.energy_power.scaphandre.enabled ? 1 : 0
-  source = "fabiocicerchia/scaphandre/helm"
+  count   = var.energy_power.scaphandre.enabled ? 1 : 0
+  source  = "fabiocicerchia/scaphandre/helm"
+  version = "~> 0.0.3"
 
   providers = {
     helm = helm
@@ -71,8 +76,9 @@ module "scaphandre" {
 }
 
 module "kubegreen" {
-  count  = var.sustainability_optimisation.kubegreen.enabled ? 1 : 0
-  source = "fabiocicerchia/kubegreen/helm"
+  count   = var.sustainability_optimisation.kubegreen.enabled ? 1 : 0
+  source  = "fabiocicerchia/kubegreen/helm"
+  version = "~> 0.0.3"
 
   providers = {
     helm = helm
@@ -85,8 +91,9 @@ module "kubegreen" {
 }
 
 module "carbon_intensity_exporter" {
-  count  = var.carbon_emissions.carbon_intensity_exporter.enabled ? 1 : 0
-  source = "fabiocicerchia/carbon-intensity-exporter/helm"
+  count   = var.carbon_emissions.carbon_intensity_exporter.enabled ? 1 : 0
+  source  = "fabiocicerchia/carbon-intensity-exporter/helm"
+  version = "~> 0.0.1"
 
   providers = {
     helm = helm
@@ -99,8 +106,9 @@ module "carbon_intensity_exporter" {
 }
 
 module "cloud_carbon_footprint" {
-  count  = var.carbon_emissions.cloud_carbon_footprint.enabled ? 1 : 0
-  source = "fabiocicerchia/cloud-carbon-footprint/helm"
+  count   = var.carbon_emissions.cloud_carbon_footprint.enabled ? 1 : 0
+  source  = "fabiocicerchia/cloud-carbon-footprint/helm"
+  version = "~> 0.0.1"
 
   providers = {
     helm = helm
@@ -113,8 +121,9 @@ module "cloud_carbon_footprint" {
 }
 
 module "codecarbon" {
-  count  = var.carbon_emissions.codecarbon.enabled ? 1 : 0
-  source = "fabiocicerchia/codecarbon/kubernetes"
+  count   = var.carbon_emissions.codecarbon.enabled ? 1 : 0
+  source  = "fabiocicerchia/codecarbon/kubernetes"
+  version = "~> 0.0.2"
 
   providers = {
     kubectl = kubectl
