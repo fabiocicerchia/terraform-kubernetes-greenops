@@ -50,7 +50,7 @@ resource "null_resource" "deploy_cert_manager" {
 
 #### GREENOPS MODULE DEPLOYMENT ###
 module "greenops" {
-  source = "../"
+  source = "../../"
 
   providers = {
     helm    = helm
