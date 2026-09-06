@@ -44,7 +44,11 @@ provider "kubectl" {
 
 resource "null_resource" "deploy_cert_manager" {
   provisioner "local-exec" {
-    command = "KUBECONFIG=${local.config_path} kubectl --context ${local.config_context} apply -f ${local.cert_manager_manifest}"
+    command = join(" ", [
+      "KUBECONFIG=${local.config_path}",
+      "kubectl --context ${local.config_context}",
+      "apply -f ${local.cert_manager_manifest}",
+    ])
   }
 }
 
