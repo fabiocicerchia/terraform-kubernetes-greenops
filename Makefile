@@ -26,7 +26,7 @@ test: ## Validate the module and every example
 	terraform init -backend=false >/dev/null
 	terraform validate
 	@for d in $$(find examples -name '*.tf' -not -path '*/.terraform/*' \
-	                -exec dirname {} \; 2>/dev/null | sort -u); do \
+		-exec dirname {} \; 2>/dev/null | sort -u); do \
 		printf 'validating %s\n' "$$d"; \
 		( cd "$$d" && terraform init -backend=false >/dev/null && terraform validate ) || exit 1; \
 	done
