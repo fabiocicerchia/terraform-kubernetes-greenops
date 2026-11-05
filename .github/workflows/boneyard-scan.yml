@@ -43,6 +43,9 @@ jobs:
           github-token: ${{ github.token }}
 
       - name: Post to boneyard
+        # Telemetry, not a check: nothing here judges the repository, and
+        # app.boneyard.run being down is not this repository's problem. Drop
+        # this once boneyard has an uptime worth turning main red over.
         continue-on-error: true
         env:
           TOKEN: ${{ secrets.BONEYARD_TOKEN }}
