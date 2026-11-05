@@ -39,6 +39,11 @@ jobs:
           skip-unchanged: "false"
 
       - name: Post to boneyard
+        # Telemetry, not a check: nothing here judges the change. Dependabot
+        # and fork pull requests get no BONEYARD_TOKEN, so the POST 401s, and
+        # app.boneyard.run being down is not this repository's problem. Drop
+        # this once the step is skipped when the token is absent and boneyard
+        # has an uptime worth gating merges on.
         continue-on-error: true
         env:
           TOKEN: ${{ secrets.BONEYARD_TOKEN }}
