@@ -1,6 +1,6 @@
-# Compatible with Terraform >= 1.0 and OpenTofu >= 1.6
+# Compatible with Terraform >= 1.3 (optional() defaults) and OpenTofu >= 1.6
 terraform {
-  required_version = ">= 1.0"
+  required_version = ">= 1.3"
 
   required_providers {
     helm = {
