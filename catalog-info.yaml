@@ -7,10 +7,11 @@ kind: Component
 metadata:
   name: terraform-kubernetes-greenops
   description: >-
-      A comprehensive Terraform module for deploying a complete environmental impact monitoring and cost
-      tracking stack on Kubernetes clusters. This module orchestrates four specialized sub-modules to
-      provide visibility into your cluster's energy consumption, operational costs, and environmental
-      impact.
+      A comprehensive Terraform module for deploying a complete environmental
+      impact monitoring and cost tracking stack on Kubernetes clusters. This
+      module orchestrates four specialized sub-modules to provide visibility
+      into your cluster's energy consumption, operational costs, and
+      environmental impact.
   annotations:
     github.com/project-slug: fabiocicerchia/terraform-kubernetes-greenops
     backstage.io/source-location: url:https://github.com/fabiocicerchia/terraform-kubernetes-greenops/
