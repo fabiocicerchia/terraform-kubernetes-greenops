@@ -1,6 +1,7 @@
 # Example KubeGreen SleepInfo Configuration
 #
-# This resource defines when pods should be suspended (sleep) and resumed (wake up).
+# This resource defines when pods should be suspended (sleep) and resumed
+# (wake up).
 # Apply this AFTER deploying the GreenOps module with KubeGreen enabled.
 #
 # Usage: kubectl apply -f kubegreen-sleepinfo.yaml
