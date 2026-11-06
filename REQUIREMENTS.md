@@ -4,7 +4,7 @@
 
 | Name      | Version |
 | --------- | ------- |
-| terraform | >= 1.0  |
+| terraform | >= 1.3  |
 | helm      | >= 2.0  |
 
 ## External Requirements

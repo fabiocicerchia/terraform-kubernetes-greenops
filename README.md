@@ -119,11 +119,11 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/
 
 | Name      | Version                   |
 | --------- | ------------------------- |
-| terraform | >= 1.0 or OpenTofu >= 1.6 |
+| terraform | >= 1.3 or OpenTofu >= 1.6 |
 | helm      | >= 2.0                    |
 | null      | >= 3.0                    |
 
-- [Terraform](https://developer.hashicorp.com/terraform/install) >= 1.0 or [OpenTofu](https://opentofu.org/docs/intro/install/)
+- [Terraform](https://developer.hashicorp.com/terraform/install) >= 1.3 or [OpenTofu](https://opentofu.org/docs/intro/install/)
 - [Kubernetes](https://kubernetes.io/) cluster (v1.24+)
 - [Kubectl](https://kubernetes.io/docs/tasks/tools/) configured to access your cluster
 - [cert-manager](https://cert-manager.io/) installed in your cluster (required for Kepler)
