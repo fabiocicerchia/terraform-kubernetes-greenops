@@ -1,0 +1,1047 @@
+{
+ "excluded": {
+  "examples/complete": [
+   {
+    "candidate": "Required provider versions (helm, null, kubectl, http) and Terraform >= 1.3 in the example",
+    "covered_by": "",
+    "reason": "TECH_BUILD",
+    "source": "examples/complete/main.tf#terraform"
+   },
+   {
+    "candidate": "Helm and kubectl providers configured from the default kubeconfig file in the home directory and context minikube",
+    "covered_by": "",
+    "reason": "TECH_INFRA",
+    "source": "examples/complete/main.tf#locals"
+   },
+   {
+    "candidate": "Chart version left empty for Prometheus (latest chart)",
+    "covered_by": "",
+    "reason": "INTERNAL_MECHANISM",
+    "source": "examples/complete/main.tf#module.greenops"
+   },
+   {
+    "candidate": "Empty values maps for KEDA, kube-green and Cloud Carbon Footprint",
+    "covered_by": "",
+    "reason": "TRIVIAL",
+    "source": "examples/complete/main.tf#module.greenops"
+   },
+   {
+    "candidate": "Splitting downloaded demo manifests into individual documents",
+    "covered_by": "",
+    "reason": "INTERNAL_MECHANISM",
+    "source": "examples/complete/main.tf#data.kubectl_file_documents.demo_app"
+   },
+   {
+    "candidate": "Grid carbon intensity comes from WattTime using credentials the operator provides",
+    "covered_by": "",
+    "reason": "UNVERIFIABLE",
+    "source": "examples/complete/main.tf#variable.watt_time_password"
+   },
+   {
+    "candidate": "Extra YAML manifests placed next to the example are applied to the cluster",
+    "covered_by": "",
+    "reason": "UNVERIFIABLE",
+    "source": "examples/complete/main.tf#resource.kubectl_manifest.extras"
+   },
+   {
+    "candidate": "A demo microservices application is deployed after the GreenOps stack",
+    "covered_by": "",
+    "reason": "UNVERIFIABLE",
+    "source": "examples/complete/main.tf#resource.kubectl_manifest.demo_app"
+   }
+  ],
+  "examples/tier1-observe-only": [
+   {
+    "candidate": "Grafana is reached by port-forwarding svc/prometheus-community-grafana and logging in with admin / prom-operator",
+    "covered_by": "",
+    "reason": "UNVERIFIABLE",
+    "source": "examples/tier1-observe-only/main.tf#greenops_observe"
+   },
+   {
+    "candidate": "Kepler and OpenCost dashboards appear in Grafana",
+    "covered_by": "",
+    "reason": "UNVERIFIABLE",
+    "source": "examples/tier1-observe-only/main.tf#greenops_observe"
+   },
+   {
+    "candidate": "Required provider versions (Terraform >= 1.3, helm >= 2.0, kubectl >= 1.14, unused null provider); the helm kubernetes = {} syntax needs helm v3",
+    "covered_by": "",
+    "reason": "TECH_BUILD",
+    "source": "examples/tier1-observe-only/main.tf#terraform"
+   },
+   {
+    "candidate": "Commented-out Prometheus 30-day retention override",
+    "covered_by": "",
+    "reason": "TRIVIAL",
+    "source": "examples/tier1-observe-only/main.tf#greenops_observe"
+   },
+   {
+    "candidate": "Header's next step points to tier2-measure-carbon.tf, which is actually the directory examples/tier2-measure-carbon",
+    "covered_by": "",
+    "reason": "TRIVIAL",
+    "source": "examples/tier1-observe-only/main.tf#greenops_observe"
+   },
+   {
+    "candidate": "Passing the helm and kubectl providers through to the root module",
+    "covered_by": "",
+    "reason": "TECH_INFRA",
+    "source": "examples/tier1-observe-only/main.tf#greenops_observe"
+   }
+  ],
+  "examples/tier2-measure-carbon": [
+   {
+    "candidate": "Example pins Terraform >= 1.3 and helm/kubectl/null provider versions",
+    "covered_by": "",
+    "reason": "TECH_BUILD",
+    "source": "examples/tier2-measure-carbon/main.tf#terraform"
+   },
+   {
+    "candidate": "helm provider uses the attribute-style kubernetes = {...} block while allowing helm >= 2.0",
+    "covered_by": "",
+    "reason": "TECH_BUILD",
+    "source": "examples/tier2-measure-carbon/main.tf#helm"
+   },
+   {
+    "candidate": "Example declares the hashicorp/null provider, which nothing uses",
+    "covered_by": "",
+    "reason": "TECH_BUILD",
+    "source": "examples/tier2-measure-carbon/main.tf#terraform"
+   },
+   {
+    "candidate": "Example wires its helm/kubectl providers into the module",
+    "covered_by": "",
+    "reason": "TECH_INFRA",
+    "source": "examples/tier2-measure-carbon/main.tf#greenops_measure"
+   },
+   {
+    "candidate": "kubectl_context passed to the module (the module's own installs don't read it)",
+    "covered_by": "",
+    "reason": "INTERNAL_MECHANISM",
+    "source": "examples/tier2-measure-carbon/main.tf#greenops_measure"
+   },
+   {
+    "candidate": "Commented-out region and cloud credential values",
+    "covered_by": "",
+    "reason": "UNVERIFIABLE",
+    "source": "examples/tier2-measure-carbon/main.tf#greenops_measure"
+   },
+   {
+    "candidate": "Dashboards listed in the closing comment (Carbon Intensity, CCF, OpenCost Carbon View)",
+    "covered_by": "",
+    "reason": "UNVERIFIABLE",
+    "source": "examples/tier2-measure-carbon/main.tf"
+   }
+  ],
+  "examples/tier3-optimize-automate": [
+   {
+    "candidate": "KEDA values set prometheus.address to the Prometheus service",
+    "covered_by": "Whether the KEDA chart reads this key is decided by the upstream chart, which is not in this repo",
+    "reason": "UNVERIFIABLE",
+    "source": "examples/tier3-optimize-automate/main.tf#greenops_optimize"
+   },
+   {
+    "candidate": "Commented-out kube-green sleepInfos example values",
+    "covered_by": "Commented out, so nothing runs it",
+    "reason": "UNVERIFIABLE",
+    "source": "examples/tier3-optimize-automate/main.tf#greenops_optimize"
+   },
+   {
+    "candidate": "Post-deployment ScaledObject and success-metric guidance comments",
+    "covered_by": "Documentation only",
+    "reason": "TRIVIAL",
+    "source": "examples/tier3-optimize-automate/main.tf"
+   },
+   {
+    "candidate": "required_version >= 1.3 and the helm/kubectl/null provider constraints (null is unused)",
+    "covered_by": "",
+    "reason": "TECH_BUILD",
+    "source": "examples/tier3-optimize-automate/main.tf#terraform"
+   },
+   {
+    "candidate": "Explicit providers mapping into the module",
+    "covered_by": "",
+    "reason": "TECH_INFRA",
+    "source": "examples/tier3-optimize-automate/main.tf#greenops_optimize"
+   },
+   {
+    "candidate": "Scaphandre left off in Tier 3",
+    "covered_by": "adoption.tier3.installs-automation-on-top-of-measurement",
+    "reason": "DUPLICATE_OF",
+    "source": "examples/tier3-optimize-automate/main.tf#greenops_optimize"
+   },
+   {
+    "candidate": "Grid carbon intensity and Cloud Carbon Footprint enabled in Tier 3",
+    "covered_by": "adoption.tier3.installs-automation-on-top-of-measurement",
+    "reason": "DUPLICATE_OF",
+    "source": "examples/tier3-optimize-automate/main.tf#greenops_optimize"
+   }
+  ],
+  "terraform-kubernetes-greenops/makefile": [
+   {
+    "candidate": "Running make with no target prints the list of targets and their descriptions",
+    "covered_by": "",
+    "reason": "TECH_BUILD",
+    "source": "Makefile#help"
+   },
+   {
+    "candidate": "make setup installs the pre-commit hook",
+    "covered_by": "",
+    "reason": "TECH_BUILD",
+    "source": "Makefile#setup"
+   },
+   {
+    "candidate": "make install downloads the pinned providers without configuring a backend",
+    "covered_by": "",
+    "reason": "TECH_BUILD",
+    "source": "Makefile#install"
+   },
+   {
+    "candidate": "make lint runs every pre-commit hook over every file",
+    "covered_by": "",
+    "reason": "TECH_BUILD",
+    "source": "Makefile#lint"
+   },
+   {
+    "candidate": "make format rewrites the Terraform sources to canonical form recursively",
+    "covered_by": "",
+    "reason": "TECH_BUILD",
+    "source": "Makefile#format"
+   },
+   {
+    "candidate": "make test validates the root module and then each example directory, stopping at the first example that fails",
+    "covered_by": "",
+    "reason": "TECH_BUILD",
+    "source": "Makefile#test"
+   },
+   {
+    "candidate": "make analyze refuses with exit code 69 and an install hint when tflint is missing, otherwise runs tflint recursively",
+    "covered_by": "",
+    "reason": "TECH_BUILD",
+    "source": "Makefile#analyze"
+   },
+   {
+    "candidate": "make build and make run exit 0 with a message explaining they do not apply to a Terraform module",
+    "covered_by": "",
+    "reason": "TECH_BUILD",
+    "source": "Makefile#build"
+   }
+  ],
+  "terraform-kubernetes-greenops/outputs": [
+   {
+    "candidate": "Output description strings",
+    "covered_by": "",
+    "reason": "TRIVIAL",
+    "source": "outputs.tf#output.observability"
+   },
+   {
+    "candidate": "Outputs index module instances with [0] under count",
+    "covered_by": "",
+    "reason": "INTERNAL_MECHANISM",
+    "source": "outputs.tf#output.cost_efficiency"
+   },
+   {
+    "candidate": "Disabled carbon tool reported as null (separate from the other categories)",
+    "covered_by": "carbon.outputs.tool-location-or-null",
+    "reason": "DUPLICATE_OF",
+    "source": "outputs.tf#output.carbon_emissions"
+   },
+   {
+    "candidate": "An installed tool reports its namespace, release name and chart version",
+    "covered_by": "",
+    "reason": "UNVERIFIABLE",
+    "source": "outputs.tf#output.observability"
+   },
+   {
+    "candidate": "A tool that is turned off is reported as empty",
+    "covered_by": "",
+    "reason": "UNVERIFIABLE",
+    "source": "outputs.tf#output.energy_power"
+   },
+   {
+    "candidate": "Carbon tool details are hidden in plan and apply output",
+    "covered_by": "",
+    "reason": "UNVERIFIABLE",
+    "source": "outputs.tf#output.carbon_emissions"
+   },
+   {
+    "candidate": "Cloud Carbon Footprint reports its dashboard and API addresses",
+    "covered_by": "",
+    "reason": "UNVERIFIABLE",
+    "source": "outputs.tf#output.carbon_emissions"
+   },
+   {
+    "candidate": "CodeCarbon reports the namespace and name of its per-node agent",
+    "covered_by": "",
+    "reason": "UNVERIFIABLE",
+    "source": "outputs.tf#output.carbon_emissions"
+   },
+   {
+    "candidate": "A carbon tool reports where it was installed, or empty when turned off",
+    "covered_by": "",
+    "reason": "UNVERIFIABLE",
+    "source": "outputs.tf#output.carbon_emissions"
+   },
+   {
+    "candidate": "The deployment reports the kubeconfig file and context it used",
+    "covered_by": "",
+    "reason": "UNVERIFIABLE",
+    "source": "outputs.tf#output.kubectl_config"
+   },
+   {
+    "candidate": "The summary lists every component as on or off, grouped by category",
+    "covered_by": "",
+    "reason": "UNVERIFIABLE",
+    "source": "outputs.tf#output.deployed_components"
+   },
+   {
+    "candidate": "The component summary is hidden even though it holds only on/off flags",
+    "covered_by": "",
+    "reason": "UNVERIFIABLE",
+    "source": "outputs.tf#output.deployed_components"
+   }
+  ],
+  "terraform-kubernetes-greenops/terraform-kubernetes-greenops": [
+   {
+    "candidate": "Each sub-module is pinned to a version range (~> 0.0.x) from the public registry",
+    "covered_by": "",
+    "reason": "TECH_BUILD",
+    "source": "main.tf#module.prometheus"
+   },
+   {
+    "candidate": "Each Helm-installed tool is wired to the helm provider and CodeCarbon to the kubectl provider",
+    "covered_by": "",
+    "reason": "INTERNAL_MECHANISM",
+    "source": "main.tf#module.codecarbon"
+   },
+   {
+    "candidate": "KEDA is configured under the observability input although it is an autoscaling tool",
+    "covered_by": "",
+    "reason": "INTERNAL_MECHANISM",
+    "source": "variables.tf#observability"
+   },
+   {
+    "candidate": "Supplying a tool object without enabled is rejected",
+    "covered_by": "",
+    "reason": "TRIVIAL",
+    "source": "variables.tf#observability"
+   },
+   {
+    "candidate": "Empty chart_version installs the latest chart",
+    "covered_by": "",
+    "reason": "UNVERIFIABLE",
+    "source": "main.tf#module.prometheus"
+   },
+   {
+    "candidate": "CodeCarbon runs on every node",
+    "covered_by": "",
+    "reason": "UNVERIFIABLE",
+    "source": "main.tf#module.codecarbon"
+   },
+   {
+    "candidate": "A tool is installed only when it is turned on",
+    "covered_by": "",
+    "reason": "UNVERIFIABLE",
+    "source": "main.tf#module.prometheus"
+   },
+   {
+    "candidate": "The KEDA example scaling manifest is applied only when asked for",
+    "covered_by": "",
+    "reason": "UNVERIFIABLE",
+    "source": "main.tf#module.keda"
+   },
+   {
+    "candidate": "Tools are installed on the cluster of the caller's providers, whatever kubectl context is given to the module",
+    "covered_by": "",
+    "reason": "UNVERIFIABLE",
+    "source": "main.tf#module.prometheus"
+   },
+   {
+    "candidate": "A tool installed without release settings uses its standard name and namespace",
+    "covered_by": "",
+    "reason": "UNVERIFIABLE",
+    "source": "main.tf#module.prometheus"
+   },
+   {
+    "candidate": "Release name, namespace, chart version and Helm values chosen by the operator are used for the install",
+    "covered_by": "",
+    "reason": "UNVERIFIABLE",
+    "source": "main.tf#module.opencost"
+   },
+   {
+    "candidate": "CodeCarbon reports to the endpoint, organisation, project and experiment the operator sets",
+    "covered_by": "",
+    "reason": "UNVERIFIABLE",
+    "source": "main.tf#module.codecarbon"
+   }
+  ],
+  "terraform-kubernetes-greenops/tflint": [
+   {
+    "candidate": "TFLint runs the terraform plugin with the 'all' preset over the module",
+    "covered_by": "",
+    "reason": "TECH_BUILD",
+    "source": ".tflint.hcl#plugin \"terraform\""
+   },
+   {
+    "candidate": "Lint requires a declared Terraform version and declared required providers",
+    "covered_by": "",
+    "reason": "TECH_BUILD",
+    "source": ".tflint.hcl#rule \"terraform_required_version\""
+   },
+   {
+    "candidate": "Lint requires every variable and output to be documented and every variable to be typed",
+    "covered_by": "",
+    "reason": "TECH_BUILD",
+    "source": ".tflint.hcl#rule \"terraform_documented_variables\""
+   },
+   {
+    "candidate": "Lint enforces snake_case naming for Terraform blocks",
+    "covered_by": "",
+    "reason": "TECH_BUILD",
+    "source": ".tflint.hcl#rule \"terraform_naming_convention\""
+   },
+   {
+    "candidate": "Lint flags unused declarations",
+    "covered_by": "",
+    "reason": "TECH_BUILD",
+    "source": ".tflint.hcl#rule \"terraform_unused_declarations\""
+   },
+   {
+    "candidate": "Lint requires pinned module sources",
+    "covered_by": "",
+    "reason": "TECH_BUILD",
+    "source": ".tflint.hcl#rule \"terraform_module_pinned_source\""
+   }
+  ],
+  "terraform-kubernetes-greenops/variables": [
+   {
+    "candidate": "Empty chart_version installs the latest chart",
+    "covered_by": "",
+    "reason": "UNVERIFIABLE",
+    "source": "variables.tf#observability"
+   },
+   {
+    "candidate": "kubectl_config_path default value and context reported as 'current' when null",
+    "covered_by": "configuration.cluster-connection.kubeconfig-inputs-not-used-for-deployment",
+    "reason": "DUPLICATE_OF",
+    "source": "variables.tf#kubectl_config_path"
+   },
+   {
+    "candidate": "KEDA manifest_path default keda.yaml",
+    "covered_by": "optimisation.event-autoscaling.example-off-by-default",
+    "reason": "DUPLICATE_OF",
+    "source": "variables.tf#observability"
+   },
+   {
+    "candidate": "values typed as any with {} default",
+    "covered_by": "",
+    "reason": "INTERNAL_MECHANISM",
+    "source": "variables.tf#observability"
+   },
+   {
+    "candidate": "Per-field optional() type permutations for each tool",
+    "covered_by": "",
+    "reason": "TRIVIAL",
+    "source": "variables.tf"
+   },
+   {
+    "candidate": "Category variables default to {}",
+    "covered_by": "configuration.component-toggles.safe-starter-defaults",
+    "reason": "DUPLICATE_OF",
+    "source": "variables.tf"
+   }
+  ],
+  "terraform-kubernetes-greenops/versions": [
+   {
+    "candidate": "Provider source addresses (hashicorp/helm, gavinbunney/kubectl)",
+    "covered_by": "",
+    "reason": "INTERNAL_MECHANISM",
+    "source": "versions.tf#terraform"
+   },
+   {
+    "candidate": "OpenTofu >= 1.6 compatibility claim in comment",
+    "covered_by": "",
+    "reason": "UNVERIFIABLE",
+    "source": "versions.tf#terraform"
+   }
+  ]
+ },
+ "lifted": {
+  "examples/complete": [],
+  "examples/tier1-observe-only": [],
+  "examples/tier2-measure-carbon": [],
+  "examples/tier3-optimize-automate": [],
+  "terraform-kubernetes-greenops/makefile": [],
+  "terraform-kubernetes-greenops/outputs": [
+   {
+    "from_source": "variables.tf#variable.carbon_emissions",
+    "rule": "Outputs derived from carbon settings that hold credentials are never printed in plan or apply output"
+   }
+  ],
+  "terraform-kubernetes-greenops/terraform-kubernetes-greenops": [
+   {
+    "from_source": "variables.tf#carbon_emissions",
+    "rule": "carbon.settings.hidden-in-plan"
+   },
+   {
+    "from_source": "variables.tf#observability",
+    "rule": "greenops.components.safe-defaults"
+   }
+  ],
+  "terraform-kubernetes-greenops/tflint": [],
+  "terraform-kubernetes-greenops/variables": [],
+  "terraform-kubernetes-greenops/versions": []
+ },
+ "retired": [],
+ "scenarios": {
+  "adoption.complete-example.001": {
+   "file": "specs/adoption/complete-example/complete-greenops-setup.feature",
+   "fingerprint": "64bc11abc6db",
+   "human": false,
+   "rule": "adoption.complete-example.component-set",
+   "source": "examples/complete/main.tf#module.greenops",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "adoption.complete-example.002": {
+   "file": "specs/adoption/complete-example/complete-greenops-setup.feature",
+   "fingerprint": "ab98f2d0f72d",
+   "human": false,
+   "rule": "adoption.complete-example.cert-manager-first",
+   "source": "examples/complete/main.tf#null_resource.deploy_cert_manager",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "adoption.complete-example.003": {
+   "file": "specs/adoption/complete-example/complete-greenops-setup.feature",
+   "fingerprint": "64bc11abc6db",
+   "human": false,
+   "rule": "adoption.complete-example.opencost-carbon-cost",
+   "source": "examples/complete/main.tf#module.greenops",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "adoption.complete-example.004": {
+   "file": "specs/adoption/complete-example/complete-greenops-setup.feature",
+   "fingerprint": "64bc11abc6db",
+   "human": false,
+   "rule": "adoption.complete-example.energy-metrics-scraped",
+   "source": "examples/complete/main.tf#module.greenops",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "adoption.tier1-observe.001": {
+   "file": "specs/adoption/tier1-observe/tier1-observe.feature",
+   "fingerprint": "16ccffffcaa1",
+   "human": false,
+   "rule": "adoption.tier1.installs-observation-tools",
+   "source": "examples/tier1-observe-only/main.tf#greenops_observe",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "adoption.tier1-observe.002": {
+   "file": "specs/adoption/tier1-observe/tier1-observe.feature",
+   "fingerprint": "16ccffffcaa1",
+   "human": false,
+   "rule": "adoption.tier1.leaves-automation-and-advanced-carbon-off",
+   "source": "examples/tier1-observe-only/main.tf#greenops_observe",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "adoption.tier1-observe.003": {
+   "file": "specs/adoption/tier1-observe/tier1-observe.feature",
+   "fingerprint": "16ccffffcaa1",
+   "human": false,
+   "rule": "adoption.tier1.codecarbon-reports-to-public-api-without-key",
+   "source": "examples/tier1-observe-only/main.tf#greenops_observe",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "adoption.tier1-observe.004": {
+   "file": "specs/adoption/tier1-observe/tier1-observe.feature",
+   "fingerprint": "6bf7db9f4fad",
+   "human": false,
+   "rule": "adoption.tier1.targets-chosen-kubectl-context",
+   "source": "examples/tier1-observe-only/main.tf#kubectl_context",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "adoption.tier1-observe.005": {
+   "file": "specs/adoption/tier1-observe/tier1-observe.feature",
+   "fingerprint": "16ccffffcaa1",
+   "human": false,
+   "rule": "adoption.tier1.kepler-power-monitor-setting-has-no-effect",
+   "source": "examples/tier1-observe-only/main.tf#greenops_observe",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "adoption.tier2-measure.001": {
+   "file": "specs/adoption/tier2-measure/tier2-measure-carbon.feature",
+   "fingerprint": "b6404246331d",
+   "human": false,
+   "rule": "adoption.tier2.installs-observation-and-carbon-tools",
+   "source": "examples/tier2-measure-carbon/main.tf#greenops_measure",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "adoption.tier2-measure.002": {
+   "file": "specs/adoption/tier2-measure/tier2-measure-carbon.feature",
+   "fingerprint": "b6404246331d",
+   "human": false,
+   "rule": "adoption.tier2.no-automated-actions",
+   "source": "examples/tier2-measure-carbon/main.tf#greenops_measure",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "adoption.tier2-measure.003": {
+   "file": "specs/adoption/tier2-measure/tier2-measure-carbon.feature",
+   "fingerprint": "b6404246331d",
+   "human": false,
+   "rule": "adoption.tier2.codecarbon-off",
+   "source": "examples/tier2-measure-carbon/main.tf#greenops_measure",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "adoption.tier2-measure.004": {
+   "file": "specs/adoption/tier2-measure/tier2-measure-carbon.feature",
+   "fingerprint": "b6404246331d",
+   "human": false,
+   "rule": "adoption.tier2.opencost-carbon-cost-on",
+   "source": "examples/tier2-measure-carbon/main.tf#greenops_measure",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "adoption.tier2-measure.005": {
+   "file": "specs/adoption/tier2-measure/tier2-measure-carbon.feature",
+   "fingerprint": "6bf7db9f4fad",
+   "human": false,
+   "rule": "adoption.tier2.deploys-to-chosen-context",
+   "source": "examples/tier2-measure-carbon/main.tf#kubectl_context",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "adoption.tier2-measure.006": {
+   "file": "specs/adoption/tier2-measure/tier2-measure-carbon.feature",
+   "fingerprint": "b6404246331d",
+   "human": false,
+   "rule": "adoption.tier2.kepler-power-monitor-request-ignored",
+   "source": "examples/tier2-measure-carbon/main.tf#greenops_measure",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "adoption.tier3-optimise.001": {
+   "file": "specs/adoption/tier3-optimise/tier3-optimise-automate.feature",
+   "fingerprint": "f3e77297a2e8",
+   "human": false,
+   "rule": "adoption.tier3.installs-automation-on-top-of-measurement",
+   "source": "examples/tier3-optimize-automate/main.tf#greenops_optimize",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "adoption.tier3-optimise.002": {
+   "file": "specs/adoption/tier3-optimise/tier3-optimise-automate.feature",
+   "fingerprint": "f3e77297a2e8",
+   "human": false,
+   "rule": "adoption.tier3.no-example-scaling-by-default",
+   "source": "examples/tier3-optimize-automate/main.tf#greenops_optimize",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "adoption.tier3-optimise.003": {
+   "file": "specs/adoption/tier3-optimise/tier3-optimise-automate.feature",
+   "fingerprint": "f3e77297a2e8",
+   "human": false,
+   "rule": "adoption.tier3.metrics-retained-90-days",
+   "source": "examples/tier3-optimize-automate/main.tf#greenops_optimize",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "adoption.tier3-optimise.004": {
+   "file": "specs/adoption/tier3-optimise/tier3-optimise-automate.feature",
+   "fingerprint": "f3e77297a2e8",
+   "human": false,
+   "rule": "adoption.tier3.cost-includes-carbon",
+   "source": "examples/tier3-optimize-automate/main.tf#greenops_optimize",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "adoption.tier3-optimise.005": {
+   "file": "specs/adoption/tier3-optimise/tier3-optimise-automate.feature",
+   "fingerprint": "f3e77297a2e8",
+   "human": false,
+   "rule": "adoption.tier3.power-monitor-request-ignored",
+   "source": "examples/tier3-optimize-automate/main.tf#greenops_optimize",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "adoption.tier3-optimise.006": {
+   "file": "specs/adoption/tier3-optimise/tier3-optimise-automate.feature",
+   "fingerprint": "f3e77297a2e8",
+   "human": false,
+   "rule": "adoption.tier3.app-carbon-off",
+   "source": "examples/tier3-optimize-automate/main.tf#greenops_optimize",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "adoption.tier3-optimise.007": {
+   "file": "specs/adoption/tier3-optimise/tier3-optimise-automate.feature",
+   "fingerprint": "6bf7db9f4fad",
+   "human": false,
+   "rule": "adoption.tier3.deploys-to-chosen-context",
+   "source": "examples/tier3-optimize-automate/main.tf#kubectl_context",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "carbon.application-emissions.001": {
+   "file": "specs/carbon/application-emissions/application-emissions.feature",
+   "fingerprint": "a6664cadb137",
+   "human": false,
+   "rule": "carbon.codecarbon.installed-by-default-without-account",
+   "source": "variables.tf#carbon_emissions",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "carbon.application-emissions.002": {
+   "file": "specs/carbon/application-emissions/application-emissions.feature",
+   "fingerprint": "a6664cadb137",
+   "human": false,
+   "rule": "carbon.settings.hidden-in-plan",
+   "source": "variables.tf#carbon_emissions",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "carbon.application-emissions.003": {
+   "file": "specs/carbon/application-emissions/application-emissions-variables.feature",
+   "fingerprint": "a6664cadb137",
+   "human": false,
+   "rule": "carbon.application-emissions.default-reporting-target",
+   "source": "variables.tf#carbon_emissions",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "carbon.application-emissions.004": {
+   "file": "specs/carbon/application-emissions/application-emissions-variables.feature",
+   "fingerprint": "a6664cadb137",
+   "human": false,
+   "rule": "carbon.application-emissions.credentials-hidden",
+   "source": "variables.tf#carbon_emissions",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "configuration.cluster-connection.001": {
+   "file": "specs/configuration/cluster-connection/cluster-connection.feature",
+   "fingerprint": "af293b6a3830",
+   "human": false,
+   "rule": "configuration.cluster-connection.kubeconfig-inputs-not-used-for-deployment",
+   "source": "variables.tf#kubectl_context",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "configuration.component-toggles.001": {
+   "file": "specs/configuration/component-toggles/component-selection.feature",
+   "fingerprint": "c0d088f8665e",
+   "human": false,
+   "rule": "greenops.components.safe-defaults",
+   "source": "variables.tf#observability",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "configuration.component-toggles.002": {
+   "file": "specs/configuration/component-toggles/component-toggles.feature",
+   "fingerprint": "c0d088f8665e",
+   "human": false,
+   "rule": "configuration.component-toggles.safe-starter-defaults",
+   "source": "variables.tf#observability",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "configuration.component-toggles.003": {
+   "file": "specs/configuration/component-toggles/component-toggles.feature",
+   "fingerprint": "c0d088f8665e",
+   "human": false,
+   "rule": "configuration.component-toggles.siblings-keep-defaults",
+   "source": "variables.tf#observability",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "configuration.component-toggles.004": {
+   "file": "specs/configuration/component-toggles/component-toggles.feature",
+   "fingerprint": "c0d088f8665e",
+   "human": false,
+   "rule": "configuration.component-toggles.enabled-required",
+   "source": "variables.tf#observability",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "configuration.component-toggles.005": {
+   "file": "specs/configuration/component-toggles/component-toggles.feature",
+   "fingerprint": "c0d088f8665e",
+   "human": false,
+   "rule": "optimisation.event-autoscaling.example-off-by-default",
+   "source": "variables.tf#observability",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "configuration.release-customisation.001": {
+   "file": "specs/configuration/release-customisation/release-customisation.feature",
+   "fingerprint": "c0d088f8665e",
+   "human": false,
+   "rule": "configuration.release-customisation.default-release-locations",
+   "source": "variables.tf#observability",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "configuration.release-customisation.002": {
+   "file": "specs/configuration/release-customisation/release-customisation.feature",
+   "fingerprint": "b6ad9e84a118",
+   "human": false,
+   "rule": "configuration.release-customisation.overrides-applied",
+   "source": "variables.tf#cost_efficiency",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "developer-tooling.version-requirements.001": {
+   "file": "specs/developer-tooling/version-requirements/version-requirements.feature",
+   "fingerprint": "dcb977d783bf",
+   "human": false,
+   "rule": "tooling.versions.terraform-1-3-minimum",
+   "source": "versions.tf#terraform",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  },
+  "developer-tooling.version-requirements.002": {
+   "file": "specs/developer-tooling/version-requirements/version-requirements.feature",
+   "fingerprint": "dcb977d783bf",
+   "human": false,
+   "rule": "tooling.versions.provider-minimums",
+   "source": "versions.tf#terraform",
+   "status": "inferred",
+   "test": "",
+   "tests": []
+  }
+ },
+ "taxonomy": {
+  "domains": [
+   {
+    "areas": [
+     {
+      "description": "Installing Prometheus (with Grafana) to collect and store cluster metrics, enabled by default.",
+      "slug": "metrics-stack",
+      "title": "Metrics stack"
+     },
+     {
+      "description": "Reporting the release names and namespaces of the installed metrics tools back to the caller.",
+      "slug": "observability-outputs",
+      "title": "Observability outputs"
+     }
+    ],
+    "description": "Collecting cluster metrics as the foundation every other GreenOps tool builds on.",
+    "slug": "observability",
+    "title": "Observability"
+   },
+   {
+    "areas": [
+     {
+      "description": "Installing OpenCost to split spend by workload and namespace, enabled by default.",
+      "slug": "cost-allocation",
+      "title": "Cost allocation"
+     },
+     {
+      "description": "Reporting where the cost tool was installed.",
+      "slug": "cost-outputs",
+      "title": "Cost outputs"
+     }
+    ],
+    "description": "Showing what cluster workloads cost so that waste can be found.",
+    "slug": "cost",
+    "title": "Cost visibility"
+   },
+   {
+    "areas": [
+     {
+      "description": "Installing Kepler for per-pod and per-namespace energy use, enabled by default.",
+      "slug": "kepler-energy",
+      "title": "Pod energy metrics"
+     },
+     {
+      "description": "Optionally installing Scaphandre as a second power-measurement agent that overlaps with Kepler.",
+      "slug": "scaphandre-power",
+      "title": "Host power metrics"
+     },
+     {
+      "description": "Reporting where the energy and power tools were installed.",
+      "slug": "energy-outputs",
+      "title": "Energy outputs"
+     }
+    ],
+    "description": "Measuring how much power the cluster's nodes and pods use.",
+    "slug": "energy",
+    "title": "Energy monitoring"
+   },
+   {
+    "areas": [
+     {
+      "description": "Optionally exporting electricity-grid carbon intensity to support carbon-aware scheduling.",
+      "slug": "grid-carbon-intensity",
+      "title": "Grid carbon intensity"
+     },
+     {
+      "description": "Optionally installing Cloud Carbon Footprint to estimate emissions from cloud-provider usage data.",
+      "slug": "cloud-footprint",
+      "title": "Cloud footprint"
+     },
+     {
+      "description": "Running CodeCarbon on every node and reporting to a CodeCarbon API with organisation, project, experiment and API-key settings.",
+      "slug": "application-emissions",
+      "title": "Application emissions"
+     },
+     {
+      "description": "Reporting the carbon tools' locations while keeping credential-bearing values marked sensitive.",
+      "slug": "carbon-outputs",
+      "title": "Carbon outputs"
+     }
+    ],
+    "description": "Estimating the carbon footprint of the cluster, its cloud account and its applications.",
+    "slug": "carbon",
+    "title": "Carbon accounting"
+   },
+   {
+    "areas": [
+     {
+      "description": "Optionally installing KEDA with an optional example scaling manifest.",
+      "slug": "event-autoscaling",
+      "title": "Event-driven autoscaling"
+     },
+     {
+      "description": "Optionally installing kube-green to put idle workloads to sleep on a schedule.",
+      "slug": "off-hours-shutdown",
+      "title": "Off-hours shutdown"
+     },
+     {
+      "description": "Reporting where the automation tools were installed.",
+      "slug": "optimisation-outputs",
+      "title": "Optimisation outputs"
+     }
+    ],
+    "description": "Tools that act on the cluster by scaling or shutting down workloads, off by default.",
+    "slug": "optimisation",
+    "title": "Optimisation and automation"
+   },
+   {
+    "areas": [
+     {
+      "description": "Choosing the kubeconfig file and context the module deploys to, and reporting them back.",
+      "slug": "cluster-connection",
+      "title": "Cluster connection"
+     },
+     {
+      "description": "Turning each tool on or off per category with safe defaults filled in for anything left out.",
+      "slug": "component-toggles",
+      "title": "Component toggles and defaults"
+     },
+     {
+      "description": "Overriding each tool's release name, namespace, chart version and Helm values.",
+      "slug": "release-customisation",
+      "title": "Release customisation"
+     },
+     {
+      "description": "A single sensitive output listing which components are turned on.",
+      "slug": "deployment-summary",
+      "title": "Deployment summary"
+     }
+    ],
+    "description": "How a user picks a cluster, chooses components and tunes them.",
+    "slug": "configuration",
+    "title": "Module configuration"
+   },
+   {
+    "areas": [
+     {
+      "description": "Starter setup with metrics, energy, cost and app carbon only, with no automation and no credentials needed.",
+      "slug": "tier1-observe",
+      "title": "Tier 1: observe"
+     },
+     {
+      "description": "Adds grid-intensity and cloud carbon estimation on top of observation.",
+      "slug": "tier2-measure",
+      "title": "Tier 2: measure carbon"
+     },
+     {
+      "description": "Turns on autoscaling and scheduled shutdown once baselines are known.",
+      "slug": "tier3-optimise",
+      "title": "Tier 3: optimise and automate"
+     },
+     {
+      "description": "Every component turned on together, as a reference.",
+      "slug": "complete-example",
+      "title": "Complete setup"
+     }
+    ],
+    "description": "Example setups that walk a team through GreenOps one stage at a time.",
+    "slug": "adoption",
+    "title": "Adoption paths"
+   },
+   {
+    "areas": [
+     {
+      "description": "Make targets for setup, provider install, lint, format, test and analysis.",
+      "slug": "make-tasks",
+      "title": "Make tasks"
+     },
+     {
+      "description": "Checking that the module and every example are valid Terraform.",
+      "slug": "validation",
+      "title": "Validation"
+     },
+     {
+      "description": "TFLint rules that check the Terraform for correctness and style.",
+      "slug": "static-analysis",
+      "title": "Static analysis"
+     },
+     {
+      "description": "The supported Terraform version and the pinned Helm and Kubernetes providers.",
+      "slug": "version-requirements",
+      "title": "Version requirements"
+     }
+    ],
+    "description": "Build, quality-gate and compatibility tooling for people maintaining the module.",
+    "slug": "developer-tooling",
+    "title": "Developer tooling"
+   }
+  ]
+ }
+}
