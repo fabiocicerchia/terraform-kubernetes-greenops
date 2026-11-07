@@ -4,7 +4,6 @@ Feature: Reporting application emissions to CodeCarbon
 
   Background:
     Given the operator has configured kubectl access to a Kubernetes cluster
-    And CodeCarbon is turned on
 
   @id:carbon.application-emissions.001 @rule:carbon.codecarbon.installed-by-default-without-account @inferred @source:variables.tf#carbon_emissions @questionable
   Scenario: CodeCarbon is installed by default with no account details

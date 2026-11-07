@@ -17,5 +17,5 @@ Feature: Reporting application carbon emissions with CodeCarbon
   Scenario: Carbon settings, including the CodeCarbon API key, are never shown in plan output
     Given the operator sets the CodeCarbon API key to "cc_example_key_123"
     When the operator plans the module
-    Then the carbon settings are displayed as "(sensitive value)"
+    Then every value derived from the carbon settings is displayed as "(sensitive value)"
     And the API key does not appear in the plan output
