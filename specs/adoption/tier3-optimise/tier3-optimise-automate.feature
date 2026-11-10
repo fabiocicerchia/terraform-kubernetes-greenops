@@ -50,19 +50,3 @@ Feature: Optimising and automating a GreenOps cluster (Tier 3)
     Then Kepler is installed in the "kepler-operator" namespace
     And no Kepler power monitor is deployed
     And no error or warning tells the operator that the request was ignored
-
-  @id:adoption.tier3-optimise.006 @rule:adoption.tier3.app-carbon-off @inferred @source:examples/tier3-optimize-automate/main.tf#greenops_optimize @questionable
-  Scenario: Tier 3 does not track application carbon unless the operator turns it on
-    When the operator applies the example
-    Then no CodeCarbon agent runs on the cluster nodes
-
-  @id:adoption.tier3-optimise.007 @rule:adoption.tier3.deploys-to-chosen-context @inferred @source:examples/tier3-optimize-automate/main.tf#kubectl_context
-  Scenario Outline: Tier 3 deploys to the kubectl context the operator names, or the current one when none is named
-    Given the operator sets the example's kubectl_context to <context>
-    When the operator applies the example
-    Then every component is installed into the cluster of <target>
-
-    Examples:
-      | context    | target                                                |
-      | "minikube" | the "minikube" context of the default kubeconfig file |
-      | nothing    | the current context of the default kubeconfig file    |

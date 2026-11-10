@@ -491,7 +491,18 @@
   "terraform-kubernetes-greenops/variables": [],
   "terraform-kubernetes-greenops/versions": []
  },
- "retired": [],
+ "retired": [
+  "carbon.application-emissions.001",
+  "carbon.application-emissions.004",
+  "configuration.component-toggles.001",
+  "adoption.tier1-observe.003",
+  "adoption.tier1-observe.005",
+  "adoption.tier2-measure.003",
+  "adoption.tier2-measure.005",
+  "adoption.tier2-measure.006",
+  "adoption.tier3-optimise.006",
+  "adoption.tier3-optimise.007"
+ ],
  "scenarios": {
   "adoption.complete-example.001": {
    "file": "specs/adoption/complete-example/complete-greenops-setup.feature",
@@ -553,32 +564,12 @@
    "test": "",
    "tests": []
   },
-  "adoption.tier1-observe.003": {
-   "file": "specs/adoption/tier1-observe/tier1-observe.feature",
-   "fingerprint": "16ccffffcaa1",
-   "human": false,
-   "rule": "adoption.tier1.codecarbon-reports-to-public-api-without-key",
-   "source": "examples/tier1-observe-only/main.tf#greenops_observe",
-   "status": "inferred",
-   "test": "",
-   "tests": []
-  },
   "adoption.tier1-observe.004": {
    "file": "specs/adoption/tier1-observe/tier1-observe.feature",
    "fingerprint": "6bf7db9f4fad",
    "human": false,
    "rule": "adoption.tier1.targets-chosen-kubectl-context",
    "source": "examples/tier1-observe-only/main.tf#kubectl_context",
-   "status": "inferred",
-   "test": "",
-   "tests": []
-  },
-  "adoption.tier1-observe.005": {
-   "file": "specs/adoption/tier1-observe/tier1-observe.feature",
-   "fingerprint": "16ccffffcaa1",
-   "human": false,
-   "rule": "adoption.tier1.kepler-power-monitor-setting-has-no-effect",
-   "source": "examples/tier1-observe-only/main.tf#greenops_observe",
    "status": "inferred",
    "test": "",
    "tests": []
@@ -603,41 +594,11 @@
    "test": "",
    "tests": []
   },
-  "adoption.tier2-measure.003": {
-   "file": "specs/adoption/tier2-measure/tier2-measure-carbon.feature",
-   "fingerprint": "b6404246331d",
-   "human": false,
-   "rule": "adoption.tier2.codecarbon-off",
-   "source": "examples/tier2-measure-carbon/main.tf#greenops_measure",
-   "status": "inferred",
-   "test": "",
-   "tests": []
-  },
   "adoption.tier2-measure.004": {
    "file": "specs/adoption/tier2-measure/tier2-measure-carbon.feature",
    "fingerprint": "b6404246331d",
    "human": false,
    "rule": "adoption.tier2.opencost-carbon-cost-on",
-   "source": "examples/tier2-measure-carbon/main.tf#greenops_measure",
-   "status": "inferred",
-   "test": "",
-   "tests": []
-  },
-  "adoption.tier2-measure.005": {
-   "file": "specs/adoption/tier2-measure/tier2-measure-carbon.feature",
-   "fingerprint": "6bf7db9f4fad",
-   "human": false,
-   "rule": "adoption.tier2.deploys-to-chosen-context",
-   "source": "examples/tier2-measure-carbon/main.tf#kubectl_context",
-   "status": "inferred",
-   "test": "",
-   "tests": []
-  },
-  "adoption.tier2-measure.006": {
-   "file": "specs/adoption/tier2-measure/tier2-measure-carbon.feature",
-   "fingerprint": "b6404246331d",
-   "human": false,
-   "rule": "adoption.tier2.kepler-power-monitor-request-ignored",
    "source": "examples/tier2-measure-carbon/main.tf#greenops_measure",
    "status": "inferred",
    "test": "",
@@ -693,36 +654,6 @@
    "test": "",
    "tests": []
   },
-  "adoption.tier3-optimise.006": {
-   "file": "specs/adoption/tier3-optimise/tier3-optimise-automate.feature",
-   "fingerprint": "f3e77297a2e8",
-   "human": false,
-   "rule": "adoption.tier3.app-carbon-off",
-   "source": "examples/tier3-optimize-automate/main.tf#greenops_optimize",
-   "status": "inferred",
-   "test": "",
-   "tests": []
-  },
-  "adoption.tier3-optimise.007": {
-   "file": "specs/adoption/tier3-optimise/tier3-optimise-automate.feature",
-   "fingerprint": "6bf7db9f4fad",
-   "human": false,
-   "rule": "adoption.tier3.deploys-to-chosen-context",
-   "source": "examples/tier3-optimize-automate/main.tf#kubectl_context",
-   "status": "inferred",
-   "test": "",
-   "tests": []
-  },
-  "carbon.application-emissions.001": {
-   "file": "specs/carbon/application-emissions/application-emissions.feature",
-   "fingerprint": "a6664cadb137",
-   "human": false,
-   "rule": "carbon.codecarbon.installed-by-default-without-account",
-   "source": "variables.tf#carbon_emissions",
-   "status": "inferred",
-   "test": "",
-   "tests": []
-  },
   "carbon.application-emissions.002": {
    "file": "specs/carbon/application-emissions/application-emissions.feature",
    "fingerprint": "a6664cadb137",
@@ -743,32 +674,12 @@
    "test": "",
    "tests": []
   },
-  "carbon.application-emissions.004": {
-   "file": "specs/carbon/application-emissions/application-emissions-variables.feature",
-   "fingerprint": "a6664cadb137",
-   "human": false,
-   "rule": "carbon.application-emissions.credentials-hidden",
-   "source": "variables.tf#carbon_emissions",
-   "status": "inferred",
-   "test": "",
-   "tests": []
-  },
   "configuration.cluster-connection.001": {
    "file": "specs/configuration/cluster-connection/cluster-connection.feature",
    "fingerprint": "af293b6a3830",
    "human": false,
    "rule": "configuration.cluster-connection.kubeconfig-inputs-not-used-for-deployment",
    "source": "variables.tf#kubectl_context",
-   "status": "inferred",
-   "test": "",
-   "tests": []
-  },
-  "configuration.component-toggles.001": {
-   "file": "specs/configuration/component-toggles/component-selection.feature",
-   "fingerprint": "c0d088f8665e",
-   "human": false,
-   "rule": "greenops.components.safe-defaults",
-   "source": "variables.tf#observability",
    "status": "inferred",
    "test": "",
    "tests": []

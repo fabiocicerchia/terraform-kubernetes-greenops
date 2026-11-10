@@ -33,13 +33,6 @@ Feature: Starting GreenOps with observation only
       | Carbon Intensity Exporter |
       | Cloud Carbon Footprint    |
 
-  @id:adoption.tier1-observe.003 @rule:adoption.tier1.codecarbon-reports-to-public-api-without-key @inferred @source:examples/tier1-observe-only/main.tf#greenops_observe @questionable
-  Scenario: Tier 1 CodeCarbon is set up with no API key but still points at the public CodeCarbon API
-    Given the operator has not set a CodeCarbon API key, organisation, project or experiment
-    When the operator applies the Tier 1 example
-    Then CodeCarbon runs with the API endpoint "https://api.codecarbon.io"
-    And its API key, organisation, project and experiment settings are empty
-
   @id:adoption.tier1-observe.004 @rule:adoption.tier1.targets-chosen-kubectl-context @inferred @source:examples/tier1-observe-only/main.tf#kubectl_context
   Scenario Outline: Tier 1 deploys to the current kubectl context unless the operator names one
     Given the operator's default kubeconfig file has contexts "minikube" and "staging", with "staging" current
@@ -50,10 +43,3 @@ Feature: Starting GreenOps with observation only
       | kubectl_context | target   |
       | (unset)         | staging  |
       | minikube        | minikube |
-
-  @id:adoption.tier1-observe.005 @rule:adoption.tier1.kepler-power-monitor-setting-has-no-effect @inferred @source:examples/tier1-observe-only/main.tf#greenops_observe @questionable
-  Scenario: Tier 1's Kepler power-monitor setting changes nothing
-    Given the example sets Kepler's deploy_powermonitor to true
-    When the operator applies the Tier 1 example
-    Then Kepler is installed with only its release name, namespace, chart version and Helm values
-    And no separate power-monitor resource is created because of that setting

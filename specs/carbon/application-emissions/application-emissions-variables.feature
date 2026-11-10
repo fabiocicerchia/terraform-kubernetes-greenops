@@ -12,10 +12,3 @@ Feature: Reporting application carbon emissions with CodeCarbon
     Then CodeCarbon runs the image "fabiocicerchia/codecarbon:latest"
     And it reports to "https://api.codecarbon.io"
     And its organisation, project, experiment and API key are empty
-
-  @id:carbon.application-emissions.004 @rule:carbon.application-emissions.credentials-hidden @inferred @source:variables.tf#carbon_emissions
-  Scenario: Carbon settings, including the CodeCarbon API key, are never shown in plan output
-    Given the operator sets the CodeCarbon API key to "cc_example_key_123"
-    When the operator plans the module
-    Then every value derived from the carbon settings is displayed as "(sensitive value)"
-    And the API key does not appear in the plan output
